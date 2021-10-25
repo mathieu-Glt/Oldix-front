@@ -1,15 +1,43 @@
-// .header {
-
-// }
-
 header {
     display: flex;
+    margin: 1.5em 1.5em 0 1.5em;
+    flex-wrap: wrap;
+}
+
+.header__left {
+  display: flex;
+  justify-content: flex-start;
+  min-width: 500px;
+  width: 70%;
+}
+
+.header__right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 250px;
+  width: 30%;
+}
+
+.logo {
+  max-width: 173px;
+  max-height: 73px;
 }
 
 .menu {
-    display: flex;
-    color: yellow;
-};
+  display: flex;
+  font-size: 1.2em;
+  color: yellow;
+  text-transform: uppercase;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: 'Cinzel', serif;
+  font-weight: 500;
+}
+
+.menu__item {
+  margin-left : 1em;
+}
 
 .profil {
   width: 50px;
@@ -17,4 +45,103 @@ header {
   background-color: 0,0,0,0;
   border-radius: 50%;
   border: 2px solid yellow;
-};
+  margin-right: 2em;
+}
+
+// Style barre de recherche
+// .container .search-bar {
+//   width: 60px;
+//   height: 60px;
+//   background: #fff;
+//   display: flex;
+//   border: solid 3px #f6ff00;
+//   border-radius: 30px;
+//   overflow: hidden;
+//   transition: 0.5s;
+//   box-shadow: 5px 5px 15px #292929;
+// }
+// .container .search-bar__search-icon {
+//   padding-left: 10px;
+//   padding-right: 13px;
+// }
+// .container .search-bar__search-icon .fas {
+//   padding: 0.55rem;
+//   border-radius: 50%;
+//   color: #292929;
+//   background: #fff;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: 1.4rem;
+//   transition: 0.5s;
+// }
+// .container .search-bar__search-icon:hover {
+//   cursor: pointer;
+// }
+// .container .search-bar__search-input {
+//   height: 60px;
+//   width: 370px;
+//   position: relative;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+// .container .search-bar__search-input input {
+//   width: 100%;
+//   height: 100%;
+//   outline: none;
+//   font-size: 1.5em;
+//   padding: 0 0.4em 0 0;
+//   border: none;
+//   color: #292929;
+//   font-family: "Cairo";
+// }
+// .container .search-bar__search-input input::-moz-placeholder {
+//   font-size: 0.7em;
+//   color: #8d8d8d;
+//   font-weight: 400;
+//   font-family: "Cairo";
+// }
+// .container .search-bar__search-input input:-ms-input-placeholder {
+//   font-size: 0.7em;
+//   color: #8d8d8d;
+//   font-weight: 400;
+//   font-family: "Cairo";
+// }
+// .container .search-bar__search-input input::placeholder {
+//   font-size: 0.7em;
+//   color: #8d8d8d;
+//   font-weight: 400;
+//   font-family: "Cairo";
+// }
+// @media screen and (max-width: 576px) {
+//   .container .search-bar__search-input {
+//     width: 230px;
+//   }
+// }
+// .container .search-bar__close-icon .far {
+//   margin-right: 17px;
+//   background: transparent;
+//   font-size: 1.5em;
+//   color: #292929;
+// }
+// .container .search-bar__close-icon .far:hover {
+//   cursor: pointer;
+// }
+// @media screen and (max-width: 576px) {
+//   .container .search-bar {
+//     width: 300px;
+//   }
+// }
+// .container .search-bar--active {
+//   width: 440px;
+// }
+// .container .search-bar--active i.fas {
+//   color: #fff;
+//   background: #292929;
+// }
+// @media screen and (max-width: 576px) {
+//   .container .search-bar--active {
+//     width: 300px;
+//   }
+// }
