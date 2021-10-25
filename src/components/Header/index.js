@@ -19,11 +19,15 @@ const Header = () => (
     <div className="header__right">
       <img src={Profil} alt="profil" className="profil" />
       {/* Barre de recherche => https://codepen.io/a7m3d000/pen/GRvKzEK */}
-      <div className="search-bar__search-icon"><i className="fas fa-search" /></div>
-      <div className="search-bar__search-input">
-        <input type="text" placeholder="Que cherchez-vous ?" />
+      <div className="container">
+        <div className="search-bar">
+          <div className="search-bar__search-icon"><i className="fas fa-search" /></div>
+          <div className="search-bar__search-input">
+            <input type="text" placeholder="Que cherchez-vous ?" />
+          </div>
+          <div className="search-bar__close-icon"><i className="far fa-times-circle" /></div>
+        </div>
       </div>
-      <div className="search-bar__close-icon"><i className="far fa-times-circle" /></div>
     </div>
   </header>
 );
