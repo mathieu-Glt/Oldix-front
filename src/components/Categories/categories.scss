@@ -12,7 +12,33 @@ h1 {
   font-family: 'Anton', 'sans-serif';
 }
 
-.container__thematics {
+.submenu {
+  font-size: 1.1rem;
+  color: rgb(148, 148, 148);
+
+  &__item {
+    margin-left : 1em;
+
+    &:hover {
+      color: rgb(255, 255, 255);
+      text-decoration: underline rgb(255, 255, 255);
+      text-underline-offset: 0.5em;
+    }
+
+    &__selected {
+      text-decoration: underline rgb(148, 148, 148);
+      text-underline-offset: 0.5em;
+      // border-bottom: solid 5px yellow;
+      // border-radius: 5px;
+    }
+  } 
+}
+
+
+
+
+
+.container__categories {
   overflow-x: hidden;
   width: 95%;
   display: block;
@@ -20,14 +46,14 @@ h1 {
   padding-bottom: 20px;
 }
 
-.wrapper__thematics {
+.wrapper__categories {
   display: grid;
-  grid-template-columns: repeat(1,100%);
+  grid-template-columns: repeat(1);
   scroll-behavior: smooth;
   z-index: 90;
   overflow-y: visible;
 
-  .section__thematics {
+  .section__categories {
     width: 100%;
     position: relative;
     display: grid;

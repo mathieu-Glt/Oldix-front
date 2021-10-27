@@ -1,27 +1,29 @@
 import { NavLink } from 'react-router-dom';
-import './thematics.scss';
 
-const Thematics = ({ menuThematics }) => (
-  <div className="container__thematics">
+import './byLanguages.scss';
+
+const ByLanguages = ({ menuByLanguages }) => (
+  <div className="container__bylanguages">
+
     <nav className="categories__submenu">
-      {menuThematics.map((thematic) => (
+      {menuByLanguages.map((language) => (
         <NavLink
           className="submenu submenu__item"
-          to={thematic.route}
-          key={thematic.label}
+          to={language.route}
+          key={language.label}
           activeClassName="submenu submenu__item__selected"
           exact
         >
-          {thematic.label}
+          {language.label}
         </NavLink>
       ))}
     </nav>
 
-    <h1>{menuThematics.label}</h1>
+    <h1>{menuByLanguages.label}</h1>
 
-    <div className="wrapper__thematics">
+    <div className="wrapper__bylanguages">
     {/* Début 1er section */}
-      <section className="section__thematics">
+      <section className="section__bylanguages">
         <div className="item">
           <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMDFiNmJhYTQtYWQ0MS00OTEwLWJkNjQtMDIzNWQ3NjExMTg4XkEyXkFqcGdeQXVyOTI2MjI5MQ@@._V1_SX300.jpg" alt="Describe Movie" />
         </div>
@@ -42,7 +44,7 @@ const Thematics = ({ menuThematics }) => (
         </div>
       </section>
       {/* Début 2ème section */}
-      <section className="section__thematics">
+      <section className="section__bylanguages">
         <div className="item">
           <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
         </div>
@@ -63,7 +65,7 @@ const Thematics = ({ menuThematics }) => (
         </div>
       </section>
       {/* Début 3ème section */}
-      <section className="section__thematics">
+      <section className="section__bylanguages">
         <div className="item">
           <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMDFiNmJhYTQtYWQ0MS00OTEwLWJkNjQtMDIzNWQ3NjExMTg4XkEyXkFqcGdeQXVyOTI2MjI5MQ@@._V1_SX300.jpg" alt="Describe Movie" />
         </div>
@@ -87,4 +89,4 @@ const Thematics = ({ menuThematics }) => (
   </div>
 );
 
-export default Thematics;
+export default ByLanguages;

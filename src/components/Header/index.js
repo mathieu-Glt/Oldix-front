@@ -5,7 +5,7 @@ import Profil from 'src/assets/images/profil_picture.png';
 
 import './header.scss';
 
-const Header = ( {menu} ) => (
+const Header = ({ menu }) => (
 
   <header className="header">
     <nav className="header__left">
