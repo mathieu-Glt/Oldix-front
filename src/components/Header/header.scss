@@ -34,12 +34,24 @@ header {
   flex-wrap: wrap;
   font-family: 'Cinzel', serif;
   font-weight: 500;
-}
 
-.menu__item {
-  margin-left : 1em;
-}
+  &__item {
+    margin-left : 1em;
 
+    &:hover {
+      color: rgb(143, 143, 10);
+      text-decoration: underline rgb(143, 143, 10);
+      text-underline-offset: 1em;
+    }
+
+    &__selected {
+      text-decoration: underline yellow;
+      text-underline-offset: 1em;
+      // border-bottom: solid 5px yellow;
+      // border-radius: 5px;
+    }
+  } 
+}
 .profil {
   width: 55px;
   height: 55px;

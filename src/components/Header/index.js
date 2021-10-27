@@ -1,19 +1,28 @@
+import { NavLink } from 'react-router-dom';
+
 import Logo from 'src/assets/images/Logo.png';
 import Profil from 'src/assets/images/profil_picture.png';
 
 import './header.scss';
 
-const Header = () => (
+const Header = ( {menu} ) => (
 
   <header className="header">
     <nav className="header__left">
-      <img className="logo" src={Logo} alt="logo" />
-      <ul className="menu">
-        <li className="menu__item">Categories</li>
-        <li className="menu__item">By languages</li>
-        <li className="menu__item">Thematics</li>
-        <li className="menu__item">Have you seen this ?</li>
-      </ul>
+      <a href="/">
+        <img className="logo" src={Logo} alt="logo" />
+      </a>
+      {menu.map((menu) => (
+        <NavLink
+          className="menu menu__item"
+          to={menu.route}
+          key={menu.label}
+          activeClassName="menu menu__item__selected"
+          exact
+        >
+          {menu.label}
+        </NavLink>
+      ))}
     </nav>
 
     <div className="header__right">

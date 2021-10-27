@@ -26,11 +26,9 @@ const Carroussel = () => (
         </div>
         <a href="#section2" className="arrow__btn">›</a>
       </section>
+
       <section id="section2">
         <a href="#section1" className="arrow__btn">‹</a>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYThiMzJiNzMtMzI4My00MmFmLThjODctNWE2MjMwZTM1NGFkXkEyXkFqcGdeQXVyNjUwMzI2NzU@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
         <div className="item">
           <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BY2U0NjJmYjMtZDUzZi00YzVkLTkwNWEtOGFkYTg3ZDQ0YjYwXkEyXkFqcGdeQXVyMTQ2MjQyNDc@._V1_SX300.jpg" alt="Describe Movie" />
         </div>
@@ -56,9 +54,6 @@ const Carroussel = () => (
         </div>
         <div className="item">
           <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMzY1ODRkN2MtNWM5My00ZDNiLTk0YzUtMzBkMGQ0NmUxODRkXkEyXkFqcGdeQXVyNDY2MTk1ODk@._V1_SX300.jpg" alt="Describe Movie" />
         </div>
         <div className="item">
           <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMzY1ODRkN2MtNWM5My00ZDNiLTk0YzUtMzBkMGQ0NmUxODRkXkEyXkFqcGdeQXVyNDY2MTk1ODk@._V1_SX300.jpg" alt="Describe Movie" />
