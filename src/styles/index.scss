@@ -2,10 +2,17 @@
 @use 'vars';
 
 body {
-  font-family: sans-serif;
+  // background-image: url("https://www.zupimages.net/up/21/42/eymk.jpg");
+  // background-image: url("");
+  background-image:linear-gradient(to bottom, #292929, 25%, #000000);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
+
 /* 
+292929
+000000
   // or you can import your own font
   @font-face {
     font-family: 'Roboto';

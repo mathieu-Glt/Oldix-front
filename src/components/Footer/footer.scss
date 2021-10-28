@@ -1,0 +1,28 @@
+.container__footer {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+}
+
+.footer {
+    background-color: #292929;
+    color: rgb(202, 202, 202);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+}
+
+.menu__footer {
+  display: flex;
+  height: 100%;
+  width: 80%;
+  justify-content: space-around;
+  align-items: center;
+
+  &-item {
+    // display: flex;
+  }
+}
+
+
