@@ -14,6 +14,7 @@ import menuData from 'src/data/menu';
 import submenuCategories from 'src/data/categories';
 import submenuThematics from 'src/data/thematics';
 import submenuByLanguages from 'src/data/bylanguages';
+import movies from 'src/data/movies';
 
 import './styles.css';
 
@@ -31,7 +32,7 @@ const App = () => (
       <Categories menuCategories={submenuCategories} />
     </Route>
     <Route path="/by_languages" exact>
-      <ByLanguages menuByLanguages={submenuByLanguages} />
+      <ByLanguages menuByLanguages={submenuByLanguages} movies={movies} />
     </Route>
     {/* <Route path="/have_you_seen_this" exact >
       <Have_you_seen_this />
