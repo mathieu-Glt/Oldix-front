@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-import Modal from './Modal';
+//import Modal from '../Modale/LogiqueModale';
 import './byLanguages.scss';
 
 const ByLanguages = ({ menuByLanguages, movies }) => (
@@ -90,7 +90,7 @@ const ByLanguages = ({ menuByLanguages, movies }) => (
         </div>
       </section>
       {/* MODAL */}
-      <Modal movies={movies} />
+      {/* <Modal movies={movies} /> */}
     </div>
   </div>
 );

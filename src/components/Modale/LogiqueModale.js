@@ -1,9 +1,21 @@
-// import movies from 'src/data/movies';
+// import {useState} from 'react';
+// import './modal.scss';
 
-import './modal.scss';
+// const LogiqueModale = () => {
+//   const [revele, changeRevele] = useState(false);
 
-const Modal = ({ movies }) => (
-<div id="id01" className="modal">
+//   function toggle(){
+//     changeRevele(!revele)
+//   }
+
+//   return {
+//     revele,
+//     toggle,
+//   }
+// };
+// export default LogiqueModale;
+
+/* <div id={ movies.slug } className="modal">
   <div className="modal__dialog">
         <a href="#" className="closebtn">×</a>
         <h3>{movies[0].title}</h3>
@@ -22,6 +34,4 @@ const Modal = ({ movies }) => (
     </div>
   </div>
 </div> 
-);
-
-export default Modal;
+);*/
