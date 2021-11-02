@@ -11,7 +11,7 @@ const ByLanguages = ({ menuByLanguages, movies }) => (
         <NavLink
           className="submenu submenu__item"
           to={language.route}
-          key={language.label}
+          key={language.label}s
           activeClassName="submenu submenu__item__selected"
           exact
         >
