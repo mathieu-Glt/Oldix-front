@@ -5,11 +5,10 @@ import axios from 'axios';
 
 import Header from 'src/components/Header';
 import Footer from 'src/components/Footer';
-import Carrousel from 'src/components/Carrousel';
+import Home from 'src/components/Home';
 import Thematics from 'src/components/Thematics';
 import Categories from 'src/components/Categories';
 import ByLanguages from 'src/components/ByLanguages';
-
 
 // Import du tableau des Routes
 import menuData from 'src/data/menu';
@@ -23,36 +22,31 @@ import './styles.css';
 // == Composant
 const App = () => { 
   // les films à afficher
-  const [results, setResults] = useState([]);
-  const [revele, changeRevele] = useState(false);
-  
+  const [resultsCategories, setResultsCategories] = useState([]);
 
-  const toggle = () => {
-    changeRevele(!revele)
-    console.log(revele);
-  };
-
-  axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/categories/drama`)
-  .then((res) => {
-    // console.log('repositories :', response.data.items);
-    // console.log(`nb : {response.data.total_count}`);
-    setResults(res.data);
-  })
-  .catch((error) => {
-    console.log(error);
-  })
-  .finally(() => {
-  });
-
+  const getMoviesCategories = () => {
+    axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/categories`)
+    .then((response) => {
+      // console.log('repositories :', response.data.items);
+      // console.log(`nb : {response.data.total_count}`);
+      setResultsCategories(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+    })
+  }
   useEffect(() => {
     document.title = `Accueil`;
-  }, [results]);
+    getMoviesCategories();
+  }, []);
 
   return (
     <div className="app">
       <Header menu={menuData} />
       <Route path="/" exact >
-        <Carrousel results={results}  revele={revele} toggle={toggle}/>
+        <Home resultsCategories={resultsCategories} />
       </Route>
       <Route path="/thematics" exact>
         <Thematics menuThematics={submenuThematics} />

@@ -15,6 +15,10 @@
   z-index:1
 }
 
+.swiper:hover .swiper-scrollbar-drag {
+  background-color: rgba(255, 255, 255, 0.315);
+}
+
   .swiper-vertical>.swiper-wrapper{
     flex-direction:column
   }
@@ -46,7 +50,8 @@
     width:100%;
     height:100%;
     position:relative;
-    transition-property:transform
+    transition-property:transform;
+    
   }
   
   .swiper-slide-invisible-blank{
@@ -178,10 +183,11 @@
     height:100%;
     width:100%;
     position:relative;
-    background:rgba(255, 255, 255, 0.301);
+    margin-bottom: 1em;
+    background:rgba(255, 255, 255, 0);
     border-radius:10px;
     left:0;
-    top:0
+    top:0;
   }
   
   .swiper-scrollbar-cursor-drag{
@@ -293,19 +299,23 @@
   padding-bottom: 10px !important;
   display: flex;
   align-items: center;
+  
 }
 
-.carouselbox__img {
-  height: 250px;
-  background-size: cover;
+.swiperSlide {
+  cursor: pointer;
+  z-index: 5000;
+  overflow: visible;
   margin: 5px 10px;
   padding-top: 3em;
   padding-bottom: 3em;
-  cursor: pointer;
+}
+.carouselbox__img {
+  background-size: cover;
+  height: 250px;
   transition: 0.5s ease;
-  z-index: 5000;
-  overflow: visible;
   &:hover {
+    box-shadow: 0px 0px 3px 3px  rgba(247, 243, 36, 0.425);
     transform: scale(1.3);
     z-index: 999999;
     overflow: visible;
