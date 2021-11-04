@@ -21,7 +21,7 @@ import './styles.css';
 
 // == Composant
 const App = () => { 
-  // les films à afficher
+  // Toutes les catégories
   const [resultsCategories, setResultsCategories] = useState([]);
 
   const getMoviesCategories = () => {
@@ -30,6 +30,7 @@ const App = () => {
       // console.log('repositories :', response.data.items);
       // console.log(`nb : {response.data.total_count}`);
       setResultsCategories(response.data);
+      console.log(response.data)
     })
     .catch((error) => {
       console.log(error);

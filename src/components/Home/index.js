@@ -9,11 +9,11 @@ const Home= ({ resultsCategories }) => {
     <div>
         { resultsCategories.map(categorie =>   
       <React.Fragment>
-        <h1 className="categoriesTitle">{categorie.name}</h1>
-        <Carrousel resultsCategories={resultsCategories} />
+        <h1 className="categoriesTitle" >{categorie.name}</h1>
+        <Carrousel key={categorie.slug} categories={categorie.slug} />
       </React.Fragment>
       )}
-      {/* {console.log(resultsCategories[0].slug)} */}
+      {/* {console.log(categorie.slug)} */}
     </div>
   )
 };

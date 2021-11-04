@@ -9,7 +9,7 @@ import Modal from 'src/components/Modale/modal';
 
 import 'swiper/css/pagination';
 
-const Carroussel = ({ resultsCategories }) => {
+const Carroussel = ({ categories }) => {
 
   // *******************  VARIABLES D'ETATS ******************* //
   const [openModal, setOpenModal] = useState(false);
@@ -44,8 +44,10 @@ const Carroussel = ({ resultsCategories }) => {
   // *******************  AFFICHAGE DES FILMS ******************* //
   const [resultsMoviesByCategory, setResultsMoviesByCategory] = useState([]);
 
-  const getMoviesByCategory = categorySlug => {
-    axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/categories/drama`)
+  {console.log(categories);}
+  const getMoviesByCategory = () => {
+    
+    axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/categories/${categories}`)
     .then((response) => {
       // console.log('repositories :', response.data.items);
       // console.log(`nb : {response.data.total_count}`);
@@ -56,7 +58,8 @@ const Carroussel = ({ resultsCategories }) => {
     })
     .finally(() => {
     })
-  }
+    }
+  
   useEffect(() => {
     document.title = `Accueil`;
     getMoviesByCategory();
@@ -112,7 +115,7 @@ useEffect(() => {
     modules={[Navigation, Scrollbar, A11y]}
     className="swiper__container"
     spaceBetween={30}
-    slidesPerView={8.5}
+    slidesPerView={9.5}
     navigation
     scrollbar={{ draggable: true }}
     onSwiper={(swiper) => console.log(swiper)}
@@ -121,7 +124,7 @@ useEffect(() => {
     { resultsMoviesByCategory.map(movie =>
     <SwiperSlide 
       className="swiperSlide"
-      key={movie.slug}> 
+      > 
         <img className="carouselbox__img" src={movie.pictureUrl} alt= {movie.name} onClick={ () =>  showModal(movie.slug) }></img>
     </SwiperSlide>
     )}
