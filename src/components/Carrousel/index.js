@@ -5,16 +5,13 @@ import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import React from 'react';
 
-import Modal from 'src/components/Modale/modal';
+
 
 import 'swiper/css/pagination';
 
-const Carroussel = ({ categories }) => {
+const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, setLoading }) => {
 
   // *******************  VARIABLES D'ETATS ******************* //
-  const [openModal, setOpenModal] = useState(false);
-  const [descriptionMovie, setDescriptionMovie] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   // *******************  AFFICHAGE DE LA MODALE ******************* //
   const showModal = movieSlug => {
@@ -24,7 +21,7 @@ const Carroussel = ({ categories }) => {
     axios
     .get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/movies/${movieSlug}`)
     .then(response =>{
-      console.log([response.data]);
+      console.log('carousel show modal axios', [response.data]);
       setDescriptionMovie([response.data]);
       setLoading(false);
     })
@@ -85,28 +82,7 @@ useEffect(() => {
   }, [loading]);*/
 
    // *******************  CONTENU DE LA MODALE ******************* //
-  const resultInModal = !loading ? (
-      <React.Fragment>
-        <button type="button" className="closebtn" onClick={closeModal}>
-                  <span>&times;</span>
-        </button>
-        <div className="modal__content">
-          <div className="modal__content__left"> 
-            <h3>{descriptionMovie[0].name}</h3>
-            <p><span className="indicator">Synopsis :</span> {descriptionMovie[0].synopsis}</p>
-            <p><span className="indicator">Year :</span> {descriptionMovie[0].releasedDate}</p>
-            <p><span className="indicator">Director :</span> {descriptionMovie[0].realisator}</p>
-            <p><span className="indicator">Categories :</span> {descriptionMovie[0].categories[0].name}</p>
-            <p><span className="indicator">Actors :</span> {descriptionMovie[0].actors}</p>
-          </div>
-          <div className="modal__content__right">
-            <iframe width="768" height="432"
-            src="https://www.youtube.com/embed/c0wr-PFTN2k" title={descriptionMovie[0].link} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope" allowFullScreen ></iframe>
-          </div>
-        </div>
-      </React.Fragment>
-  )
-  : null;
+
 
    // *******************  AFFICHAGE DU DOM ******************* //
   return (
@@ -121,17 +97,16 @@ useEffect(() => {
     onSwiper={(swiper) => console.log(swiper)}
     onSlideChange={() => console.log('slide change')}
   >
-    { resultsMoviesByCategory.map(movie =>
+    { resultsMoviesByCategory.map((movie, index) =>
     <SwiperSlide 
       className="swiperSlide"
+      key={movie.slug + index}
       > 
         <img className="carouselbox__img" src={movie.pictureUrl} alt= {movie.name} onClick={ () =>  showModal(movie.slug) }></img>
     </SwiperSlide>
     )}
     </Swiper>
-    <Modal showModal={openModal}  closeModal={closeModal}>
-        { resultInModal }    
-    </Modal>
+    
     
   </div>
   )  
