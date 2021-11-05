@@ -1,199 +1,114 @@
 import './carrousel.scss';
+import { Navigation, Scrollbar, A11y } from 'swiper';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import React from 'react';
 
-const Carroussel = () => (
-  <div className="container__carrousel">
-    <h1>Action</h1>
-    <div className="wrapper">
-      <section id="section1">
-        <a href="#section3" className="arrow__btn">‹</a>
-        <div className="item">
-          <img className="first__item item__img" src="https://m.media-amazon.com/images/M/MV5BMDFiNmJhYTQtYWQ0MS00OTEwLWJkNjQtMDIzNWQ3NjExMTg4XkEyXkFqcGdeQXVyOTI2MjI5MQ@@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMDFiNmJhYTQtYWQ0MS00OTEwLWJkNjQtMDIzNWQ3NjExMTg4XkEyXkFqcGdeQXVyOTI2MjI5MQ@@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMDFiNmJhYTQtYWQ0MS00OTEwLWJkNjQtMDIzNWQ3NjExMTg4XkEyXkFqcGdeQXVyOTI2MjI5MQ@@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYThiMzJiNzMtMzI4My00MmFmLThjODctNWE2MjMwZTM1NGFkXkEyXkFqcGdeQXVyNjUwMzI2NzU@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYThiMzJiNzMtMzI4My00MmFmLThjODctNWE2MjMwZTM1NGFkXkEyXkFqcGdeQXVyNjUwMzI2NzU@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <a href="#section2" className="arrow__btn">›</a>
-      </section>
 
-      <section id="section2">
-        <a href="#section1" className="arrow__btn">‹</a>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BY2U0NjJmYjMtZDUzZi00YzVkLTkwNWEtOGFkYTg3ZDQ0YjYwXkEyXkFqcGdeQXVyMTQ2MjQyNDc@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMzY1ODRkN2MtNWM5My00ZDNiLTk0YzUtMzBkMGQ0NmUxODRkXkEyXkFqcGdeQXVyNDY2MTk1ODk@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMjExMzJhYTYtZDlhNC00NDIyLWIyMGUtMDBhOGE3MzAzMjA1XkEyXkFqcGdeQXVyNjMwMjk0MTQ@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <a href="#section3" className="arrow__btn">›</a>
-      </section>
 
-      <section id="section3">
-        <a href="#section2" className="arrow__btn">‹</a>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMjExMzJhYTYtZDlhNC00NDIyLWIyMGUtMDBhOGE3MzAzMjA1XkEyXkFqcGdeQXVyNjMwMjk0MTQ@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMzY1ODRkN2MtNWM5My00ZDNiLTk0YzUtMzBkMGQ0NmUxODRkXkEyXkFqcGdeQXVyNDY2MTk1ODk@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BY2U0NjJmYjMtZDUzZi00YzVkLTkwNWEtOGFkYTg3ZDQ0YjYwXkEyXkFqcGdeQXVyMTQ2MjQyNDc@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <a href="#section1" className="arrow__btn">›</a>
-      </section>
-    </div>
+import 'swiper/css/pagination';
 
-    {/* Début du 2ème carrousel */}
-    <h1>Horror</h1>
-    <div className="wrapper">
-      <section id="section4">
-        <a href="#section6" className="arrow__btn">‹</a>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BY2U0NjJmYjMtZDUzZi00YzVkLTkwNWEtOGFkYTg3ZDQ0YjYwXkEyXkFqcGdeQXVyMTQ2MjQyNDc@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYThiMzJiNzMtMzI4My00MmFmLThjODctNWE2MjMwZTM1NGFkXkEyXkFqcGdeQXVyNjUwMzI2NzU@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMzY1ODRkN2MtNWM5My00ZDNiLTk0YzUtMzBkMGQ0NmUxODRkXkEyXkFqcGdeQXVyNDY2MTk1ODk@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <a href="#section5" className="arrow__btn">›</a>
-      </section>
+const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, setLoading }) => {
 
-      <section id="section5">
-        <a href="#section4" className="arrow__btn">‹</a>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYThiMzJiNzMtMzI4My00MmFmLThjODctNWE2MjMwZTM1NGFkXkEyXkFqcGdeQXVyNjUwMzI2NzU@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMjExMzJhYTYtZDlhNC00NDIyLWIyMGUtMDBhOGE3MzAzMjA1XkEyXkFqcGdeQXVyNjMwMjk0MTQ@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMjExMzJhYTYtZDlhNC00NDIyLWIyMGUtMDBhOGE3MzAzMjA1XkEyXkFqcGdeQXVyNjMwMjk0MTQ@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <a href="#section6" className="arrow__btn">›</a>
-      </section>
+  // *******************  VARIABLES D'ETATS ******************* //
 
-      <section id="sectionn6">
-        <a href="#section5" className="arrow__btn">‹</a>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMjExMzJhYTYtZDlhNC00NDIyLWIyMGUtMDBhOGE3MzAzMjA1XkEyXkFqcGdeQXVyNjMwMjk0MTQ@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BY2U0NjJmYjMtZDUzZi00YzVkLTkwNWEtOGFkYTg3ZDQ0YjYwXkEyXkFqcGdeQXVyMTQ2MjQyNDc@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMzY1ODRkN2MtNWM5My00ZDNiLTk0YzUtMzBkMGQ0NmUxODRkXkEyXkFqcGdeQXVyNDY2MTk1ODk@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYThiMzJiNzMtMzI4My00MmFmLThjODctNWE2MjMwZTM1NGFkXkEyXkFqcGdeQXVyNjUwMzI2NzU@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <a href="#section4" className="arrow__btn">›</a>
-      </section>
-    </div>
+  // *******************  AFFICHAGE DE LA MODALE ******************* //
+  const showModal = movieSlug => {
+    setOpenModal(true);
+    setLoading(true);
 
-    {/* Début du 3ème carrousel */}
-    <h1>Western</h1>
-    <div className="wrapper">
-      <section id="section10">
-        <a href="#section12" className="arrow__btn">‹</a>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMjExMzJhYTYtZDlhNC00NDIyLWIyMGUtMDBhOGE3MzAzMjA1XkEyXkFqcGdeQXVyNjMwMjk0MTQ@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMzY1ODRkN2MtNWM5My00ZDNiLTk0YzUtMzBkMGQ0NmUxODRkXkEyXkFqcGdeQXVyNDY2MTk1ODk@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BY2U0NjJmYjMtZDUzZi00YzVkLTkwNWEtOGFkYTg3ZDQ0YjYwXkEyXkFqcGdeQXVyMTQ2MjQyNDc@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYThiMzJiNzMtMzI4My00MmFmLThjODctNWE2MjMwZTM1NGFkXkEyXkFqcGdeQXVyNjUwMzI2NzU@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMDFiNmJhYTQtYWQ0MS00OTEwLWJkNjQtMDIzNWQ3NjExMTg4XkEyXkFqcGdeQXVyOTI2MjI5MQ@@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <a href="#section11" className="arrow__btn">›</a>
-      </section>
-      <section id="section11">
-        <a href="#section10" className="arrow__btn">‹</a>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYThiMzJiNzMtMzI4My00MmFmLThjODctNWE2MjMwZTM1NGFkXkEyXkFqcGdeQXVyNjUwMzI2NzU@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BY2U0NjJmYjMtZDUzZi00YzVkLTkwNWEtOGFkYTg3ZDQ0YjYwXkEyXkFqcGdeQXVyMTQ2MjQyNDc@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMzY1ODRkN2MtNWM5My00ZDNiLTk0YzUtMzBkMGQ0NmUxODRkXkEyXkFqcGdeQXVyNDY2MTk1ODk@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMjExMzJhYTYtZDlhNC00NDIyLWIyMGUtMDBhOGE3MzAzMjA1XkEyXkFqcGdeQXVyNjMwMjk0MTQ@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <a href="#section12" className="arrow__btn">›</a>
-      </section>
-      <section id="section12">
-        <a href="#section11" className="arrow__btn">‹</a>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMjExMzJhYTYtZDlhNC00NDIyLWIyMGUtMDBhOGE3MzAzMjA1XkEyXkFqcGdeQXVyNjMwMjk0MTQ@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMzY1ODRkN2MtNWM5My00ZDNiLTk0YzUtMzBkMGQ0NmUxODRkXkEyXkFqcGdeQXVyNDY2MTk1ODk@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYmE3Yzc1ZTktMDAwNC00OTg0LWI1ZmYtMzg2NDNiOWRlZjkwXkEyXkFqcGdeQXVyMjI4MjA5MzA@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BYThiMzJiNzMtMzI4My00MmFmLThjODctNWE2MjMwZTM1NGFkXkEyXkFqcGdeQXVyNjUwMzI2NzU@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <div className="item">
-          <img className="item__img" src="https://m.media-amazon.com/images/M/MV5BMDFiNmJhYTQtYWQ0MS00OTEwLWJkNjQtMDIzNWQ3NjExMTg4XkEyXkFqcGdeQXVyOTI2MjI5MQ@@._V1_SX300.jpg" alt="Describe Movie" />
-        </div>
-        <a href="#section10" className="arrow__btn">›</a>
-      </section>
-    </div>
+    axios
+    .get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/movies/${movieSlug}`)
+    .then(response =>{
+      console.log('carousel show modal axios', [response.data]);
+      setDescriptionMovie([response.data]);
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+
+    });
+  }
+
+  const closeModal = () => {
+    setOpenModal(false);
+    setLoading(true);
+  }
+
+  // *******************  AFFICHAGE DES FILMS ******************* //
+  const [resultsMoviesByCategory, setResultsMoviesByCategory] = useState([]);
+
+  {console.log(categories);}
+  const getMoviesByCategory = () => {
+    
+    axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/categories/${categories}`)
+    .then((response) => {
+      // console.log('repositories :', response.data.items);
+      // console.log(`nb : {response.data.total_count}`);
+      setResultsMoviesByCategory(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+    })
+    }
+  
+  useEffect(() => {
+    document.title = `Accueil`;
+    getMoviesByCategory();
+  }, []);
+
+  /*
+ //Ici, elle sera exécutée à chaque affichage
+useEffect(() => {
+    monTraitement();
+  });
+//Elle sera appelée lors du premier affichage et à chaque fois que l'élément "maVariable" sera modifié
+useEffect(() => {
+    monTraitement();
+  }, [maVariable]);
+//Dans ce cas, la fonction ne sera appelée que lors du premier affichage du composant
+useEffect(() => {
+    monTraitement();
+  }, []);
+  */
+
+  /*useEffect(() => {
+    setLoading(true);
+  }, [loading]);*/
+
+   // *******************  CONTENU DE LA MODALE ******************* //
+
+
+   // *******************  AFFICHAGE DU DOM ******************* //
+  return (
+  <div className="swiper">
+  <Swiper
+    modules={[Navigation, Scrollbar, A11y]}
+    className="swiper__container"
+    spaceBetween={30}
+    slidesPerView={9.5}
+    navigation
+    scrollbar={{ draggable: true }}
+    onSwiper={(swiper) => console.log(swiper)}
+    onSlideChange={() => console.log('slide change')}
+  >
+    { resultsMoviesByCategory.map((movie, index) =>
+    <SwiperSlide 
+      className="swiperSlide"
+      key={movie.slug + index}
+      > 
+        <img className="carouselbox__img" src={movie.pictureUrl} alt= {movie.name} onClick={ () =>  showModal(movie.slug) }></img>
+    </SwiperSlide>
+    )}
+    </Swiper>
+    
+    
   </div>
-
-);
+  )  
+}; 
 export default Carroussel;
