@@ -41,7 +41,6 @@ const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, 
   // *******************  AFFICHAGE DES FILMS ******************* //
   const [resultsMoviesByCategory, setResultsMoviesByCategory] = useState([]);
 
-  {console.log(categories);}
   const getMoviesByCategory = () => {
     
     axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/categories/${categories}`)

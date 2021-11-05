@@ -4,7 +4,7 @@ import Modal from 'src/components/Modale/modal';
 import { useState, useEffect } from 'react';
 import './home.scss';
 
-const Home= ({ resultsCategories }) => {
+const Home = ({ resultsCategories }) => {
   const [openModal, setOpenModal] = useState(false);
   const closeModal = () => {
     setOpenModal(false);
@@ -12,6 +12,7 @@ const Home= ({ resultsCategories }) => {
   }
   const [loading, setLoading] = useState(true);
   const [descriptionMovie, setDescriptionMovie] = useState([]);
+
   const resultInModal = !loading ? (
     <React.Fragment>
       <button type="button" className="closebtn" onClick={closeModal}>
@@ -27,8 +28,8 @@ const Home= ({ resultsCategories }) => {
           <p><span className="indicator">Actors :</span> {descriptionMovie[0].actors}</p>
         </div>
         <div className="modal__content__right">
-          <iframe width="768" height="432"
-          src="https://www.youtube.com/embed/c0wr-PFTN2k" title={descriptionMovie[0].link} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope" allowFullScreen ></iframe>
+          <iframe className="videoYT"
+          src={descriptionMovie[0].link} title={descriptionMovie[0].link} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope" allowFullScreen ></iframe>
         </div>
       </div>
     </React.Fragment>

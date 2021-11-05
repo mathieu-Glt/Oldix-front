@@ -10,10 +10,12 @@ h1 {
   margin: 1em 0 0 1.5rem;
   font-size: 2rem;
   font-family: 'Anton', 'sans-serif';
+  text-transform: uppercase;
 }
 
 .submenu {
-  font-size: 1.1rem;
+  text-transform: uppercase;
+  font-size: 0.9rem;
   color: rgb(148, 148, 148);
 
   &__item {
@@ -26,8 +28,9 @@ h1 {
     }
 
     &__selected {
-      text-decoration: underline rgb(148, 148, 148);
+      text-decoration: underline rgb(255, 255, 255);
       text-underline-offset: 0.5em;
+      color:white;
       // border-bottom: solid 5px yellow;
       // border-radius: 5px;
     }
@@ -45,6 +48,7 @@ h1 {
   margin: auto;
   padding-bottom: 20px;
 }
+
 
 .wrapper__categories {
   display: grid;

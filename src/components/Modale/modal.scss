@@ -28,7 +28,8 @@
     position: relative;
     padding: 0;
     outline: 0;
-    width: 80%;
+    width: 65%;
+    height: 65%;
     
     animation-name: slideDownFadeIN;
     animation-duration: 1s;
@@ -37,34 +38,39 @@
     display: table-cell;
     vertical-align: middle;
     width: 80%;
-    height: 50%;
+    height: 100%;
     
   }
+  
   
   /* la fenêtre modale  */
   &__content {
     display:flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     background-color: #000000;
     align-items: center;
     padding: 2em;
+    
     box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
     
-      &__left {
-        width: 50%;
+    &__left {
+      width: 50%;
         
-      }
-      
-      &__right{
-        width: 100%;
-        height: 100%;
-        
-      } 
     }
+    
+    &__right{
+      width: 100%;
+      height: 100%;
+    } 
   }
+}
 
-  /* Bouton servant à fermer la fenêtre modale */
-  .closebtn {
+.videoYT {
+  width: 100%;
+  height: 100%;
+}
+/* Bouton servant à fermer la fenêtre modale */
+.closebtn {
   text-decoration: none;
   //float: right;
   font-size: 5rem;
