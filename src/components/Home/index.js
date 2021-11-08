@@ -47,7 +47,7 @@ const Home = ({ resultsCategories }) => {
       {/* {console.log(categorie.slug)} */}
       <Modal showModal={openModal}  closeModal={closeModal}>
         { resultInModal }    
-    </Modal>
+      </Modal>
     </div>
   )
 };

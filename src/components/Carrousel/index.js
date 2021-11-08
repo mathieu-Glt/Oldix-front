@@ -1,5 +1,5 @@
 import './carrousel.scss';
-import { Navigation, Scrollbar, A11y } from 'swiper';
+import { Navigation, Scrollbar, A11y,} from 'swiper';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -21,7 +21,6 @@ const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, 
     axios
     .get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/movies/${movieSlug}`)
     .then(response =>{
-      console.log('carousel show modal axios', [response.data]);
       setDescriptionMovie([response.data]);
       setLoading(false);
     })
@@ -45,8 +44,6 @@ const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, 
     
     axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/categories/${categories}`)
     .then((response) => {
-      // console.log('repositories :', response.data.items);
-      // console.log(`nb : {response.data.total_count}`);
       setResultsMoviesByCategory(response.data);
     })
     .catch((error) => {
@@ -61,28 +58,6 @@ const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, 
     getMoviesByCategory();
   }, []);
 
-  /*
- //Ici, elle sera exécutée à chaque affichage
-useEffect(() => {
-    monTraitement();
-  });
-//Elle sera appelée lors du premier affichage et à chaque fois que l'élément "maVariable" sera modifié
-useEffect(() => {
-    monTraitement();
-  }, [maVariable]);
-//Dans ce cas, la fonction ne sera appelée que lors du premier affichage du composant
-useEffect(() => {
-    monTraitement();
-  }, []);
-  */
-
-  /*useEffect(() => {
-    setLoading(true);
-  }, [loading]);*/
-
-   // *******************  CONTENU DE LA MODALE ******************* //
-
-
    // *******************  AFFICHAGE DU DOM ******************* //
   return (
   <div className="swiper">
@@ -90,11 +65,9 @@ useEffect(() => {
     modules={[Navigation, Scrollbar, A11y]}
     className="swiper__container"
     spaceBetween={30}
-    slidesPerView={9.5}
+    slidesPerView={8.5}
     navigation
     scrollbar={{ draggable: true }}
-    onSwiper={(swiper) => console.log(swiper)}
-    onSlideChange={() => console.log('slide change')}
   >
     { resultsMoviesByCategory.map((movie, index) =>
     <SwiperSlide 

@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Header from 'src/components/Header';
-import Footer from 'src/components/Footer';
 import Home from 'src/components/Home';
 import Thematics from 'src/components/Thematics';
 import Categories from 'src/components/Categories';
@@ -12,13 +11,18 @@ import ByLanguages from 'src/components/ByLanguages';
 import SubCategory from 'src/components/SubCategory';
 import SubByLanguages from 'src/components/SubByLanguages';
 import SubThematics from 'src/components/SubThematics';
+import ContactUs from 'src/components/ContactUs';
+import LegalMentions from 'src/components/LegalMentions';
+import About from 'src/components/About';
+import Footer from 'src/components/Footer';
 
 // Import du tableau des Routes
 import menuData from 'src/data/menu';
+import footerData from 'src/data/footer';
 // import submenuCategories from 'src/data/categories';
-import submenuThematics from 'src/data/thematics';
+// import submenuThematics from 'src/data/thematics';
 // import submenuByLanguages from 'src/data/bylanguages';
-import movies from 'src/data/movies';
+// import movies from 'src/data/movies';
 
 import './styles.css';
 
@@ -90,7 +94,7 @@ const App = () => {
 
   return (
     <div className="app">
-      <Header menu={menuData} />
+      <Header menuHeader={menuData} />
       <Route path="/" exact >
         <Home resultsCategories={resultsCategories} />
       </Route>
@@ -115,8 +119,17 @@ const App = () => {
       {/* <Route path="/have_you_seen_this" exact >
         <Have_you_seen_this />
       </Route> */}
-  
-      <Footer />
+
+      <Route path="/contact_us" exact>
+        <ContactUs />
+      </Route>
+      <Route path="/legal_mentions" exact>
+        <LegalMentions />
+      </Route>
+      <Route path="/about" exact>
+        <About />
+      </Route>
+      <Footer menuFooter={footerData}/>
     </div>
   );
 };
