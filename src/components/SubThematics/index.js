@@ -5,7 +5,7 @@ import axios from 'axios';
 import MoviesList from 'src/components/MoviesList';
 // import './categories.scss';
 
-const SubThematics = ({ resultsThematics }) => {
+const SubThematics = ({ resultsThematics, loading, setDescriptionMovie, openModal, setOpenModal, setLoading, closeModal }) => {
 
   // On défini le state initial
   const [movies, setMovies] = useState([]);
@@ -18,10 +18,7 @@ const SubThematics = ({ resultsThematics }) => {
   const getMovies = () => {
     axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/thematics/${slug}`)
     .then((response) => {
-      // console.log('repositories :', response.data.items);
-      // console.log(`nb : {response.data.total_count}`);
       setMovies(response.data);
-      console.log(response.data);
       setIsLoading(false);
     })
     .catch((error) => {
@@ -55,7 +52,7 @@ const SubThematics = ({ resultsThematics }) => {
     
     <h1>{slug}</h1>
     {!isLoading &&  
-      <MoviesList movies={movies} />
+      <MoviesList movies={movies} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal} />
     }
   </div>
   );

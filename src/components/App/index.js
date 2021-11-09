@@ -11,9 +11,11 @@ import ByLanguages from 'src/components/ByLanguages';
 import SubCategory from 'src/components/SubCategory';
 import SubByLanguages from 'src/components/SubByLanguages';
 import SubThematics from 'src/components/SubThematics';
+import Random from 'src/components/Random';
 import ContactUs from 'src/components/ContactUs';
 import LegalMentions from 'src/components/LegalMentions';
 import About from 'src/components/About';
+import Modal from 'src/components/Modale/modal';
 import Footer from 'src/components/Footer';
 
 // Import du tableau des Routes
@@ -29,13 +31,26 @@ import './styles.css';
 // == Composant
 const App = () => { 
   // ********************** Variable d'états ********************** 
-
   // Variable qui contient les noms des catégories
   const [resultsCategories, setResultsCategories] = useState([]);
   // Variable qui contient les noms des différentes langues
   const [resultsLanguages, setResultsLanguages] = useState([]);
   // Variable qui contient les noms des thématiques
   const [resultsThematics, setResultsThematics] = useState([]);
+  
+  // Variable qui définit l'affichage de la modale
+  const [openModal, setOpenModal] = useState(false);
+  // Variable qui définit l'état de chargement de la requête API
+  const [loading, setLoading] = useState(true);
+  // Variable contenant les informations d'un film
+  const [descriptionMovie, setDescriptionMovie] = useState([]);
+  
+
+  // Fonction pour ouvrir/fermer la modale
+  const closeModal = () => {
+    setOpenModal(false);
+    setLoading(true);
+  }
 
   // Requête API pour les noms des catégories
   const getMoviesCategories = () => {
@@ -96,30 +111,30 @@ const App = () => {
     <div className="app">
       <Header menuHeader={menuData} />
       <Route path="/" exact >
-        <Home resultsCategories={resultsCategories} />
+        <Home resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
       </Route>
       <Route path="/categories" exact >
-        <Categories resultsCategories={resultsCategories} />
+        <Categories resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal} />
       </Route>
       <Route path="/categories/:slug">
-        <SubCategory resultsCategories={resultsCategories} />
+        <SubCategory resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal} />
       </Route>
       <Route path="/by_languages" exact>
-        <ByLanguages resultsLanguages={resultsLanguages} />
+        <ByLanguages resultsLanguages={resultsLanguages} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
       </Route>
       <Route path="/by_languages/:slug">
-        <SubByLanguages resultsLanguages={resultsLanguages} />
+        <SubByLanguages resultsLanguages={resultsLanguages} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
       </Route>
       <Route path="/thematics" exact>
-        <Thematics resultsThematics={resultsThematics} />
+        <Thematics resultsThematics={resultsThematics} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
       </Route>
       <Route path="/thematics/:slug">
-        <SubThematics resultsThematics={resultsThematics} />
+        <SubThematics resultsThematics={resultsThematics} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
       </Route>
-      {/* <Route path="/have_you_seen_this" exact >
-        <Have_you_seen_this />
-      </Route> */}
-
+      <Route path="/have_you_seen_this" exact >
+        <Random />
+      </Route>
+       {/* ********************** Footer ********************** */}
       <Route path="/contact_us" exact>
         <ContactUs />
       </Route>
@@ -129,6 +144,7 @@ const App = () => {
       <Route path="/about" exact>
         <About />
       </Route>
+      <Modal descriptionMovie={descriptionMovie} loading={loading} showModal={openModal} closeModal={closeModal} />
       <Footer menuFooter={footerData}/>
     </div>
   );

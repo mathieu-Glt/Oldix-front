@@ -11,8 +11,6 @@ import 'swiper/css/pagination';
 
 const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, setLoading }) => {
 
-  // *******************  VARIABLES D'ETATS ******************* //
-
   // *******************  AFFICHAGE DE LA MODALE ******************* //
   const showModal = movieSlug => {
     setOpenModal(true);
@@ -30,11 +28,6 @@ const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, 
     .finally(() => {
 
     });
-  }
-
-  const closeModal = () => {
-    setOpenModal(false);
-    setLoading(true);
   }
 
   // *******************  AFFICHAGE DES FILMS ******************* //
@@ -65,7 +58,7 @@ const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, 
     modules={[Navigation, Scrollbar, A11y]}
     className="swiper__container"
     spaceBetween={30}
-    slidesPerView={8.5}
+    slidesPerView={9}
     navigation
     scrollbar={{ draggable: true }}
   >

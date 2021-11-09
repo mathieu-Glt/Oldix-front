@@ -15,6 +15,10 @@
   list-style:none;
   padding:0;
   z-index:0;
+
+  &__container {
+    height: 350px !important;
+  }
 }
 
 .swiper:hover .swiper-scrollbar-drag {

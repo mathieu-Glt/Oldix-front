@@ -5,7 +5,7 @@ import axios from 'axios';
 import MoviesList from 'src/components/MoviesList';
 import './categories.scss';
 
-const SubCategory = ({ resultsCategories }) => {
+const SubCategory = ({ resultsCategories, loading, setDescriptionMovie, openModal, setOpenModal, setLoading, closeModal}) => {
 
   // On défini le state initial
   const [movies, setMovies] = useState([]);
@@ -54,7 +54,7 @@ const SubCategory = ({ resultsCategories }) => {
     
     <h1>{slug}</h1>
     {!isLoading &&  
-      <MoviesList movies={movies} />
+      <MoviesList movies={movies} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
     }
   </div>
   );
