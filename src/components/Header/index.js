@@ -7,7 +7,7 @@ import LoginForm from 'src/components/LoginForm';
 
 import './header.scss';
 
-const Header = ({ menuHeader }) => {
+const Header = ({ menuHeader, grayFilter, setGrayFilter }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
@@ -22,6 +22,10 @@ const Header = ({ menuHeader }) => {
    setIsOpen(!isOpen);
    ;
  }
+
+ const handleGrayFilter = () => {
+  setGrayFilter(!grayFilter)
+}  
 
  const handleIsLogin = () => {
    setIsLogin(!isLogin);
@@ -62,6 +66,7 @@ const Header = ({ menuHeader }) => {
     <div className="header__right">
       <div>
         {/* <button className="test__connexion" onClick={handleIsLogin}>Vue de quelqu'un {isLogin ? "Déconnecté" : "Connecté"}</button> */}
+        <button className="login__button" onClick={handleGrayFilter}>{!grayFilter ? "Black and white mode" : "Color mode"}</button>
         <button className="login__button" onClick={showOpenLoginForm}> {isLogin ? "Logout" : "Log in / Sign up"}</button>
       </div>
       <img src={Profil} alt="profil" className={isLogin ? "profil__connect" : "profil__disconnect"} />

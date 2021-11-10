@@ -3,6 +3,10 @@
   font-family: "Cairo";
 }
 
+body {
+  filter: grayscale(0%)
+}
+
 @media all {
 header {
     display: flex;

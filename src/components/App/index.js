@@ -45,6 +45,9 @@ const App = () => {
   // Variable contenant les informations d'un film
   const [descriptionMovie, setDescriptionMovie] = useState([]);
   
+  const [grayFilter, setGrayFilter] = useState(false);
+
+
 
   // Fonction pour ouvrir/fermer la modale
   const closeModal = () => {
@@ -108,8 +111,8 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app">
-      <Header menuHeader={menuData} />
+    <div className={!grayFilter ? "app" : "app__gray"}>
+      <Header menuHeader={menuData} grayFilter={grayFilter} setGrayFilter={setGrayFilter}/>
       <Route path="/" exact >
         <Home resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
       </Route>
