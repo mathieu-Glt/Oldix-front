@@ -1,12 +1,18 @@
 @use 'reset';
 @use 'vars';
 
+html, body {
+ height: 100vh;
+}
+
 body {
   // background-image: url("https://www.zupimages.net/up/21/42/eymk.jpg");
   // background-image: url("");
   background-image:linear-gradient(to bottom, #292929, 25%, #000000);
   background-repeat: no-repeat;
   background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
 }
 
 
