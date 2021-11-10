@@ -9,7 +9,7 @@ import React from 'react';
 
 import 'swiper/css/pagination';
 
-const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, setLoading }) => {
+const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, setLoading, isAuth }) => {
 
   // *******************  AFFICHAGE DE LA MODALE ******************* //
   const showModal = movieSlug => {

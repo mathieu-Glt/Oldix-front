@@ -7,41 +7,47 @@ import LoginForm from 'src/components/LoginForm';
 
 import './header.scss';
 
-const Header = ({ menuHeader, grayFilter, setGrayFilter }) => {
+const Header = ({ menuHeader, grayFilter, setGrayFilter, isAuth, setIsAuth }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [showLinks, setShowLinks] = useState(false);
   const [openLoginForm, setOpenLoginForm] = useState(false);
 
+
   const handleShowLinks = () => {
     setShowLinks(!showLinks)
   }
-
- const handleIsOpen = () => {
+  
+  const handleIsAuth = () => {
+    setIsAuth(false);
+    localStorage.clear();
+  }
+  
+  const handleIsOpen = () => {
    setIsOpen(!isOpen);
    ;
- }
-
- const handleGrayFilter = () => {
+  }
+  
+  const handleGrayFilter = () => {
   setGrayFilter(!grayFilter)
 }  
 
- const handleIsLogin = () => {
+const handleIsLogin = () => {
    setIsLogin(!isLogin);
    console.log(isLogin);
- }
-
- const showOpenLoginForm = () => {
-   setOpenLoginForm(true);
+  }
+  
+  const showOpenLoginForm = () => {
+    setOpenLoginForm(true);
  }
  const closeLoginForm = () => {
-  setOpenLoginForm(false);
-  console.log(setOpenLoginForm)
-}
-
-  return (
-    <div className="loginForm">
+   setOpenLoginForm(false);
+   console.log(setOpenLoginForm)
+  }
+  
+return (
+  <div className="loginForm">
   <header className="header">
     <nav className={`header__left ${showLinks ? "show-nav" : "hide-nav"} `}>
       <a href="/">
@@ -49,12 +55,13 @@ const Header = ({ menuHeader, grayFilter, setGrayFilter }) => {
       </a>
       {menuHeader.map((menu) => (
         <NavLink
-          className="menu menu__item"
-          to={menu.route}
-          key={menu.label}
-          activeClassName="menu menu__item__selected"
+        className="menu menu__item"
+        to={menu.route}
+        key={menu.label}
+        activeClassName="menu menu__item__selected"
+          onClick={handleShowLinks}
           exact
-        >
+          >
           {menu.label}
         </NavLink>
       ))}
@@ -64,12 +71,13 @@ const Header = ({ menuHeader, grayFilter, setGrayFilter }) => {
       </button>
 
     <div className="header__right">
-      <div>
+      <div className="button__container">
         {/* <button className="test__connexion" onClick={handleIsLogin}>Vue de quelqu'un {isLogin ? "Déconnecté" : "Connecté"}</button> */}
         <button className="login__button" onClick={handleGrayFilter}>{!grayFilter ? "Black and white mode" : "Color mode"}</button>
-        <button className="login__button" onClick={showOpenLoginForm}> {isLogin ? "Logout" : "Log in / Sign up"}</button>
+        <button className={!isAuth ? "login__button" : "login__button__close"} onClick={showOpenLoginForm}>Log in / Sign up</button>
+        <button className={isAuth ? "login__button" : "login__button__close"} onClick={handleIsAuth}>Logout</button> 
       </div>
-      <img src={Profil} alt="profil" className={isLogin ? "profil__connect" : "profil__disconnect"} />
+      <img src={Profil} alt="profil" className={isAuth ? "profil__connect" : "profil__disconnect"} />
       {/* Barre de recherche => https://codepen.io/a7m3d000/pen/GRvKzEK */}
       <div  className={isOpen ? "container__open" : "container__close"}>
         <div className="search-bar" >
@@ -79,11 +87,11 @@ const Header = ({ menuHeader, grayFilter, setGrayFilter }) => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
   </header>
-  {openLoginForm && <LoginForm closeLoginForm={closeLoginForm} setOpenLoginForm={setOpenLoginForm}/>} 
+  {openLoginForm && <LoginForm closeLoginForm={closeLoginForm} setOpenLoginForm={setOpenLoginForm} isAuth={isAuth} setIsAuth={setIsAuth} />} 
   </div>
   )
-  };
+};
 
 export default Header;

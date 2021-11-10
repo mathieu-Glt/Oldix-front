@@ -47,6 +47,8 @@ const App = () => {
   
   const [grayFilter, setGrayFilter] = useState(false);
 
+  const [isAuth, setIsAuth] = useState(false);
+
 
 
   // Fonction pour ouvrir/fermer la modale
@@ -112,9 +114,9 @@ const App = () => {
 
   return (
     <div className={!grayFilter ? "app" : "app__gray"}>
-      <Header menuHeader={menuData} grayFilter={grayFilter} setGrayFilter={setGrayFilter}/>
+      <Header isAuth={isAuth} setIsAuth={setIsAuth} menuHeader={menuData} grayFilter={grayFilter} setGrayFilter={setGrayFilter}/>
       <Route path="/" exact >
-        <Home resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
+        <Home isAuth={isAuth} setIsAuth={setIsAuth} resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
       </Route>
       <Route path="/categories" exact >
         <Categories resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal} />
