@@ -66,8 +66,8 @@ textarea:focus { outline: 0; }
 input:focus ~ span,
 textarea:focus ~ span {
   width: 100%;
-  -webkit-transition: all 0.075s ease;
-  transition: all 0.075s ease;
+  -webkit-transition: all 0.0s ease;
+  transition: all 0.0s ease;
 }
 
 textarea {

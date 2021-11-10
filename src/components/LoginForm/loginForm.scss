@@ -1,3 +1,8 @@
+@keyframes slideDownFadeIN {
+  from {top:-100px;opacity: 0;}
+  to {top:0px;opacity:1;}
+}
+
 .background {
   position: fixed;
   top:0;right:0;left:0;bottom:0;
@@ -14,18 +19,27 @@
     background: rgb(56, 56, 56);
     border-radius: 5%;
   }
+
+  &__modal {
+    animation-name: slideDownFadeIN;
+  animation-duration: 1s;
+  position: relative;
+  }
 }
 
 .container__login__close, .container__signup__close {
   visibility: hidden;
   height: 0px;
   width: 0px;
+  
 }
 
 .container__login, .container__signup {
   visibility: visible;
   height: 100%;
   width: 100%;
+  animation-name: slideDownFadeIN;
+  animation-duration: 1s;
 
 }
 .login__button__form {
@@ -61,6 +75,7 @@
 
 .title__login__form {
   text-align:center;
+  color:rgb(167, 167, 167);
 }
 
 h4 {
