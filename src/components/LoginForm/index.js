@@ -1,23 +1,13 @@
 import React from "react";
 import './loginForm.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const LoginForm = ({ setOpenLoginForm, closeLoginForm, isAuth, setIsAuth }) => {
+const LoginForm = ({ setOpenLoginForm, closeLoginForm, register, isAuth, setIsAuth, login, email, setEmail, password, setPassword, usernameReg, setUsernameReg,emailReg, setEmailReg, passwordReg, setPasswordReg, confirmPasswordReg, setConfirmPasswordReg }) => {
   // ********************** Variable d'états ********************** 
   // Gestion de l'ouverture des forms
   const [registerForm, setRegisterForm] = useState(false);
   const [LoginForm, setLoginForm] = useState(true);
-
-  // Variables qui contiennent les valeurs des inputs de login form
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  // Variables qui contiennent les valeurs des inputs de register form
-  const [usernameReg, setUsernameReg] = useState("");
-  const [emailReg, setEmailReg] = useState("");
-  const [passwordReg, setPasswordReg] = useState("");
-  const [confirmPasswordReg, setConfirmPasswordReg] = useState("");
 
   const handleRegisterForm = () => {
     setRegisterForm(true);
@@ -28,44 +18,6 @@ const LoginForm = ({ setOpenLoginForm, closeLoginForm, isAuth, setIsAuth }) => {
     setRegisterForm(false);
     setLoginForm(true);
   }
-
-  const register = () => {
-    if (passwordReg !== confirmPasswordReg) {
-      alert("Passwords don't match");
-    } else {
-      axios.post("http://ec2-54-165-199-42.compute-1.amazonaws.com/api/register",{
-        pseudo: usernameReg,
-        email: emailReg,
-        password: passwordReg
-      })
-      .then((response) => {
-        console.log(response);
-        localStorage.setItem('userDetails', response.data.token);
-        setIsAuth(true);
-        closeLoginForm();
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-    }
-  };
-
-  const login = () => {
-    axios.post("http://ec2-54-165-199-42.compute-1.amazonaws.com/api/login_check",{
-      username: email,
-      password: password,
-    })
-    .then((response) => {
-      localStorage.setItem('userDetails', response.data.token);
-      //console.log(response)
-      //console.log(localStorage);
-      setIsAuth(true);
-      closeLoginForm();
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  };
 
   return (
   <div className="background">

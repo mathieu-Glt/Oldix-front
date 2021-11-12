@@ -12,6 +12,7 @@ import SubCategory from 'src/components/SubCategory';
 import SubByLanguages from 'src/components/SubByLanguages';
 import SubThematics from 'src/components/SubThematics';
 import Random from 'src/components/Random';
+import FavoriteList from 'src/components/FavoriteList';
 import ContactUs from 'src/components/ContactUs';
 import LegalMentions from 'src/components/LegalMentions';
 import About from 'src/components/About';
@@ -47,9 +48,7 @@ const App = () => {
   
   const [grayFilter, setGrayFilter] = useState(false);
 
-  const [isAuth, setIsAuth] = useState(false);
-
-
+  const [isAuth, setIsAuth] = useState();
 
   // Fonction pour ouvrir/fermer la modale
   const closeModal = () => {
@@ -114,7 +113,9 @@ const App = () => {
 
   return (
     <div className={!grayFilter ? "app" : "app__gray"}>
+
       <Header isAuth={isAuth} setIsAuth={setIsAuth} menuHeader={menuData} grayFilter={grayFilter} setGrayFilter={setGrayFilter}/>
+      <div id="mainContainer">
       <Route path="/" exact >
         <Home isAuth={isAuth} setIsAuth={setIsAuth} resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
       </Route>
@@ -139,6 +140,9 @@ const App = () => {
       <Route path="/have_you_seen_this" exact >
         <Random />
       </Route>
+      <Route path="/favorite_list" exact >
+        <FavoriteList setOpenModal={setOpenModal} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} loading={loading} />
+      </Route>
        {/* ********************** Footer ********************** */}
       <Route path="/contact_us" exact>
         <ContactUs />
@@ -149,6 +153,7 @@ const App = () => {
       <Route path="/about" exact>
         <About />
       </Route>
+      </div>
       <Modal descriptionMovie={descriptionMovie} loading={loading} showModal={openModal} closeModal={closeModal} />
       <Footer menuFooter={footerData}/>
     </div>

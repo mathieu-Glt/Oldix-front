@@ -44,7 +44,7 @@ const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, 
     })
     .finally(() => {
     })
-    }
+  }
   
   useEffect(() => {
     document.title = `Accueil`;

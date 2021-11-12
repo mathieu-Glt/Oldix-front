@@ -7,13 +7,36 @@ import './home.scss';
 import axios from 'axios';
 
 const Home = ({ resultsCategories, loading, setDescriptionMovie, openModal, setOpenModal, setLoading, closeModal, isAuth, setIsAuth }) => {
+
   const [resultsMoviesByCategory, setResultsMoviesByCategory] = useState([]);
+  
+  const showModal = movieSlug => {
+    setOpenModal(true);
+    setLoading(true);
+
+    axios
+    .get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/movies/${movieSlug}`)
+    .then(response =>{
+      setDescriptionMovie([response.data]);
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+
+    });
+  }
 
   const getMoviesByCategory = () => {
     
-    axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/movies/randoms`)
+  axios.get('http://ec2-54-165-199-42.compute-1.amazonaws.com/api/list', {
+    headers: {
+      Authorization: 'Bearer ' + sessionStorage.getItem("userDetails")
+      }
+    })
     .then((response) => {
-      setResultsMoviesByCategory(response.data);
+    setResultsMoviesByCategory(response.data);
     })
     .catch((error) => {
       console.log(error);
@@ -21,16 +44,14 @@ const Home = ({ resultsCategories, loading, setDescriptionMovie, openModal, setO
     .finally(() => {
     })
     
-  }
-  
+  } 
   useEffect(() => {
-    document.title = `Accueil`;
     getMoviesByCategory();
   }, []);
 
   return (    
     <div>
-      {isAuth && 
+      {sessionStorage.getItem("isLoged") && 
       <div>
       <h1 className="categoriesTitle">My favorites Movies</h1>
       <Swiper

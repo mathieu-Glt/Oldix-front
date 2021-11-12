@@ -1,9 +1,34 @@
+import axios from 'axios';
+import { useState } from 'react';
 import React from 'react';
 import './modal.scss';
 
 
 const Modal = ({ showModal, children, closeModal, loading, descriptionMovie }) => {
+
+  const [favorite, setFavorite] = useState(false);
+
   
+  const addFavoriteMovies = () => {
+    axios.post(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/list/add`, {
+      headers: {
+        Authorization: 'Bearer ' + sessionStorage.getItem("userDetails")
+        },
+      body: {
+        movie: 'Bearer' + descriptionMovie[0].slug,
+      }
+    })
+      .then((response) => {
+        console.log("has been added to favorites")
+        setFavorite(!favorite)
+          })
+      .catch((error) => {
+            console.log(error);
+          })
+      .finally(() => {
+          })
+  }
+
   const resultInModal = !loading ? (
     <React.Fragment>
       <button type="button" className="closebtn" onClick={closeModal}>
@@ -11,6 +36,14 @@ const Modal = ({ showModal, children, closeModal, loading, descriptionMovie }) =
       </button>
       <div className="modal__content">
         <div className="modal__content__left"> 
+      <button className={!favorite ? "add__button" : "add__button__close"}
+        type="button" onClick={addFavoriteMovies}>
+          &#x2661;
+      </button>
+      <button className={favorite ? "add__button" : "add__button__close"}
+        type="button">
+          &#x2665;
+      </button>
           <h3>{descriptionMovie[0].name}</h3>
           <p><span className="indicator">Synopsis :</span> {descriptionMovie[0].synopsis}</p>
           <p><span className="indicator">Year :</span> {descriptionMovie[0].releasedDate}</p>
@@ -29,7 +62,9 @@ const Modal = ({ showModal, children, closeModal, loading, descriptionMovie }) =
 
   return (
     showModal && (
-      <div className="modal" onClick = { closeModal }>       
+      <div className="modal">
+        <div className="modal__background" onClick = { closeModal }>
+        </div>       
         { children }
         { resultInModal }  
       </div>

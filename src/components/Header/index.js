@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
-import React, {useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 import Logo from 'src/assets/images/Logo.png';
 import Profil from 'src/assets/images/profil_picture.png';
@@ -14,14 +15,24 @@ const Header = ({ menuHeader, grayFilter, setGrayFilter, isAuth, setIsAuth }) =>
   const [showLinks, setShowLinks] = useState(false);
   const [openLoginForm, setOpenLoginForm] = useState(false);
 
+  // Variables qui contiennent les valeurs des inputs de login form
+  const [email, setEmail] = useState(""); 
+  const [password, setPassword] = useState("");
 
+  // Variables qui contiennent les valeurs des inputs de register form
+  const [usernameReg, setUsernameReg] = useState("");
+  const [emailReg, setEmailReg] = useState("");
+  const [passwordReg, setPasswordReg] = useState("");
+  const [confirmPasswordReg, setConfirmPasswordReg] = useState("");
+
+  
   const handleShowLinks = () => {
     setShowLinks(!showLinks)
   }
   
   const handleIsAuth = () => {
     setIsAuth(false);
-    localStorage.clear();
+    sessionStorage.clear();
   }
   
   const handleIsOpen = () => {
@@ -30,23 +41,66 @@ const Header = ({ menuHeader, grayFilter, setGrayFilter, isAuth, setIsAuth }) =>
   }
   
   const handleGrayFilter = () => {
-  setGrayFilter(!grayFilter)
-}  
-
-const handleIsLogin = () => {
-   setIsLogin(!isLogin);
-   console.log(isLogin);
+    setGrayFilter(!grayFilter)
+  }  
+  
+  const handleIsLogin = () => {
+    setIsLogin(!isLogin);
+    console.log(isLogin);
   }
   
   const showOpenLoginForm = () => {
     setOpenLoginForm(true);
- }
- const closeLoginForm = () => {
-   setOpenLoginForm(false);
-   console.log(setOpenLoginForm)
+  }
+  const closeLoginForm = () => {
+    setOpenLoginForm(false);
+    console.log(setOpenLoginForm)
   }
   
-return (
+  const register = () => {
+    if (passwordReg !== confirmPasswordReg) {
+      alert("Passwords don't match");
+    } else {
+      axios.post("http://ec2-54-165-199-42.compute-1.amazonaws.com/api/register",{
+        pseudo: usernameReg,
+        email: emailReg,
+        password: passwordReg
+      })
+      .then((response) => {
+        console.log(response);
+        sessionStorage.setItem('userDetails', response.data.token);
+        setIsAuth(true);
+        closeLoginForm();
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    }
+  };
+
+  const login = () => {
+    axios.post("http://ec2-54-165-199-42.compute-1.amazonaws.com/api/login_check",{
+      username: email,
+      password: password,
+    })
+    .then((response) => {
+      sessionStorage.setItem('userDetails', response.data.token);
+      //console.log(response)
+      //console.log(localStorage);
+      setIsAuth(true);
+      sessionStorage.setItem('isLoged', true)
+      closeLoginForm();
+      window.location.reload(true);
+    })
+    .catch((error) => {
+      //console.log(error);
+    })
+  }
+  useEffect(() => {
+    login();
+  }, []);
+
+  return (
   <div className="loginForm">
   <header className="header">
     <nav className={`header__left ${showLinks ? "show-nav" : "hide-nav"} `}>
@@ -74,8 +128,8 @@ return (
       <div className="button__container">
         {/* <button className="test__connexion" onClick={handleIsLogin}>Vue de quelqu'un {isLogin ? "Déconnecté" : "Connecté"}</button> */}
         <button className="login__button" onClick={handleGrayFilter}>{!grayFilter ? "Black and white mode" : "Color mode"}</button>
-        <button className={!isAuth ? "login__button" : "login__button__close"} onClick={showOpenLoginForm}>Log in / Sign up</button>
-        <button className={isAuth ? "login__button" : "login__button__close"} onClick={handleIsAuth}>Logout</button> 
+        <button className={!sessionStorage.getItem("isLoged") ? "login__button" : "login__button__close"} onClick={showOpenLoginForm}>Log in / Sign up</button>
+        <button className={sessionStorage.getItem("isLoged") ? "login__button" : "login__button__close"} onClick={handleIsAuth}>Logout</button> 
       </div>
       <img src={Profil} alt="profil" className={isAuth ? "profil__connect" : "profil__disconnect"} />
       {/* Barre de recherche => https://codepen.io/a7m3d000/pen/GRvKzEK */}
@@ -89,7 +143,7 @@ return (
       </div>
       </div>
   </header>
-  {openLoginForm && <LoginForm closeLoginForm={closeLoginForm} setOpenLoginForm={setOpenLoginForm} isAuth={isAuth} setIsAuth={setIsAuth} />} 
+  {openLoginForm && <LoginForm login={login} register={register} closeLoginForm={closeLoginForm} setOpenLoginForm={setOpenLoginForm} isAuth={isAuth} setIsAuth={setIsAuth} email={email} setEmail={setEmail} password={password} setPassword={setPassword} usernameReg={usernameReg} setUsernameReg={setUsernameReg} emailReg={emailReg} setEmailReg={setEmailReg} passwordReg={passwordReg} setPasswordReg={setPasswordReg} confirmPasswordReg={confirmPasswordReg} setConfirmPasswordReg={setConfirmPasswordReg} />} 
   </div>
   )
 };
