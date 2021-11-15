@@ -14,8 +14,6 @@
   justify-content: center;
   align-items: center;
   &__modal {
-    height: 80vh;
-    width: 50vw;
     background: rgb(56, 56, 56);
     border-radius: 5%;
   }
@@ -36,13 +34,18 @@
 
 .container__login, .container__signup {
   visibility: visible;
-  height: 100%;
   width: 100%;
   animation-name: slideDownFadeIN;
   animation-duration: 1s;
 
 }
-.login__button__form {
+.login__button{
+  &__close{
+    visibility: hidden;
+  }
+  
+  
+  &__form {
 	background: #ffffff;
   border-radius:28px;
 	border:2px solid yellow;
@@ -65,6 +68,8 @@
       color: #d1d1d1;
      }
 }
+}
+
 
 .button__swap {
   display: flex;

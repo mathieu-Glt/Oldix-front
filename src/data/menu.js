@@ -19,4 +19,8 @@ export default [
     route: '/have_you_seen_this',
     label: 'Have you seen this ?',
   },
+  // {
+  //   route: '/favorite_list',
+  //   label: 'My favorite list',
+  // },
 ];

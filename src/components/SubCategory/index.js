@@ -4,19 +4,21 @@ import axios from 'axios';
 
 import MoviesList from 'src/components/MoviesList';
 import './categories.scss';
+// movies={movies} setMovies={setMovies} isLoading={isLoading} setIsLoading={setIsLoading à importer en props si la duplication du state bug 
+// (les 2 states sont aussi définit dans app index)}
 
-const SubCategory = ({ resultsCategories, loading, setDescriptionMovie, openModal, setOpenModal, setLoading, closeModal}) => {
+const SubCategory = ({ resultsCategories, loading, setDescriptionMovie, openModal, setOpenModal, setLoading, closeModal, isLoading, setMovies, setIsLoading, movies}) => {
 
   // On défini le state initial
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [movies, setMovies] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
 
   // On récupère le slug dans l'url
   const {slug} = useParams();
 
   // Requete ajax pour récupérer les films correspondants à telle catégorie
   const getMovies = () => {
-    axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/categories/${slug}`)
+    axios.get(`http://ec2-54-205-49-193.compute-1.amazonaws.com/api/categories/${slug}`)
     .then((response) => {
       // console.log('repositories :', response.data.items);
       // console.log(`nb : {response.data.total_count}`);

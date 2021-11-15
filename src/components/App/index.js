@@ -1,5 +1,5 @@
 // == Import
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -12,6 +12,8 @@ import SubCategory from 'src/components/SubCategory';
 import SubByLanguages from 'src/components/SubByLanguages';
 import SubThematics from 'src/components/SubThematics';
 import Random from 'src/components/Random';
+import FavoriteList from 'src/components/FavoriteList';
+import SearchResults from 'src/components/SearchResults';
 import ContactUs from 'src/components/ContactUs';
 import LegalMentions from 'src/components/LegalMentions';
 import About from 'src/components/About';
@@ -45,16 +47,71 @@ const App = () => {
   // Variable contenant les informations d'un film
   const [descriptionMovie, setDescriptionMovie] = useState([]);
   
+  const [grayFilter, setGrayFilter] = useState(false);
+
+  const [isAuth, setIsAuth] = useState();
+
+  // Variable qui contient les informations des films en fonction de leur catégorie et/ou la recherche
+  const [movies, setMovies] = useState([]);
+  // Variable qui définit l'état de chargement de la requête search et des requêtes dans les différentes catégories
+  const [isLoading, setIsLoading] = useState(true);
+  // Variable qui définit la recherche de l'utilisateur
+  const [search, setSearch] = useState('');
+  const [isFavorite, setIsFavorite] = useState(false)
+
+  // Requête à l'API de recherche
+  const loadResults = () => {
+    console.log("Je me lance");
+    axios.get(`http://ec2-54-205-49-193.compute-1.amazonaws.com/api/movies/research?q=${search}`)
+      .then((response) => {
+        setMovies(response.data);
+        console.log(response);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        {<NavLink
+        to="/search"
+        key="Search" 
+        />
+      }
+      })
+  };
+  // useEffect(() => {
+
+  // }, [movies]);
 
   // Fonction pour ouvrir/fermer la modale
   const closeModal = () => {
     setOpenModal(false);
     setLoading(true);
   }
+  // Requête à l'API pour savoir si un film est Favoris ou non
+  const isFavoriteMovie = movieSlug => {
 
+    axios.get(`http://ec2-54-205-49-193.compute-1.amazonaws.com/api/list/check/${movieSlug}`, {
+        headers: {
+          Authorization: 'Bearer ' + localStorage.getItem("userDetails")
+        }
+  })
+      .then((response) => {
+        console.log(isFavorite);
+        response.data.message == "true" ? setIsFavorite(true) : setIsFavorite(false);
+        console.log(response.data.message);
+      })
+      .catch((error) => {
+        console.log("t'es nul")
+      })
+      .finally(() => {
+      });
+    };
+    const favoriteIcon = localStorage.getItem("isFavorite");
+    
   // Requête API pour les noms des catégories
   const getMoviesCategories = () => {
-    axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/categories`)
+    axios.get(`http://ec2-54-205-49-193.compute-1.amazonaws.com/api/categories`)
     .then((response) => {
       // console.log('repositories :', response.data.items);
       // console.log(`nb : {response.data.total_count}`);
@@ -73,7 +130,7 @@ const App = () => {
 
   // Requête API pour les noms des différentes langues
   const getMoviesLanguages = () => {
-    axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/languages`)
+    axios.get(`http://ec2-54-205-49-193.compute-1.amazonaws.com/api/languages`)
     .then((response) => {
       // console.log('repositories :', response.data.items);
       // console.log(`nb : {response.data.total_count}`);
@@ -91,7 +148,7 @@ const App = () => {
 
   // Requête API pour les noms des thématiques
   const getThematics = () => {
-    axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/thematics`)
+    axios.get(`http://ec2-54-205-49-193.compute-1.amazonaws.com/api/thematics`)
     .then((response) => {
       // console.log('repositories :', response.data.items);
       // console.log(`nb : {response.data.total_count}`);
@@ -108,32 +165,41 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app">
-      <Header menuHeader={menuData} />
+    <div className={!grayFilter ? "app" : "app__gray"}>
+
+      <Header isAuth={isAuth} setIsAuth={setIsAuth} menuHeader={menuData} grayFilter={grayFilter} setGrayFilter={setGrayFilter} search={search} setSearch={setSearch} loadResults={loadResults} />
+      <div id="mainContainer">
       <Route path="/" exact >
-        <Home resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
+        <Home isFavoriteMovie={isFavoriteMovie} isFavorite={isFavorite} isAuth={isAuth} setIsAuth={setIsAuth} resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
       </Route>
       <Route path="/categories" exact >
-        <Categories resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal} />
+        <Categories movies={movies} setMovies={setMovies} isLoading={isLoading} setIsLoading={setIsLoading} resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal} />
       </Route>
       <Route path="/categories/:slug">
-        <SubCategory resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal} />
+        <SubCategory movies={movies} setMovies={setMovies} isLoading={isLoading} setIsLoading={setIsLoading} resultsCategories={resultsCategories} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal} />
       </Route>
       <Route path="/by_languages" exact>
-        <ByLanguages resultsLanguages={resultsLanguages} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
+        <ByLanguages movies={movies} setMovies={setMovies} isLoading={isLoading} setIsLoading={setIsLoading} resultsLanguages={resultsLanguages} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
       </Route>
       <Route path="/by_languages/:slug">
-        <SubByLanguages resultsLanguages={resultsLanguages} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
+        <SubByLanguages movies={movies} setMovies={setMovies} isLoading={isLoading} setIsLoading={setIsLoading} resultsLanguages={resultsLanguages} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
       </Route>
       <Route path="/thematics" exact>
-        <Thematics resultsThematics={resultsThematics} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
+        <Thematics movies={movies} setMovies={setMovies} isLoading={isLoading} setIsLoading={setIsLoading} resultsThematics={resultsThematics} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
       </Route>
       <Route path="/thematics/:slug">
-        <SubThematics resultsThematics={resultsThematics} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
+        <SubThematics movies={movies} setMovies={setMovies} isLoading={isLoading} setIsLoading={setIsLoading} resultsThematics={resultsThematics} loading={loading} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} closeModal={closeModal} setOpenModal={setOpenModal}/>
       </Route>
       <Route path="/have_you_seen_this" exact >
         <Random />
       </Route>
+      <Route path="/favorite_list" exact >
+        <FavoriteList setOpenModal={setOpenModal} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} loading={loading} />
+      </Route>
+      <Route path="/search" >
+        <SearchResults movies={movies} setOpenModal={setOpenModal} setLoading={setLoading} setDescriptionMovie={setDescriptionMovie} openModal={openModal} loading={loading} />
+      </Route>
+      {/* movies={movies} setMovies={setMovies} isLoading={isLoading} setIsLoading={setIsLoading} POUR LE COMPO SEARCHRESULTS*/} 
        {/* ********************** Footer ********************** */}
       <Route path="/contact_us" exact>
         <ContactUs />
@@ -144,7 +210,8 @@ const App = () => {
       <Route path="/about" exact>
         <About />
       </Route>
-      <Modal descriptionMovie={descriptionMovie} loading={loading} showModal={openModal} closeModal={closeModal} />
+      </div>
+      <Modal isFavoriteMovie={isFavoriteMovie} isFavorite={isFavorite} descriptionMovie={descriptionMovie} loading={loading} showModal={openModal} closeModal={closeModal} />
       <Footer menuFooter={footerData}/>
     </div>
   );

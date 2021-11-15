@@ -1,7 +1,13 @@
 .app {
-  height: 100vh;
   padding: 0;
   margin: 0;
-
+  
 }
 
+#mainContainer {
+  min-height: calc(100vh - 187px);
+}
+
+.app__gray {
+filter: grayscale(100%)
+}

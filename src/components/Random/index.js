@@ -10,7 +10,7 @@ const Random = (openModal, setOpenModal, setDescriptionMovie, setLoading ) => {
 
   const getMoviesRandom= () => {
     
-    axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/movies/randoms`)
+    axios.get(`http://ec2-54-205-49-193.compute-1.amazonaws.com/api/movies/randoms`)
     .then((response) => {
       setResultsMoviesRandom(response.data);
       console.log(response.data);

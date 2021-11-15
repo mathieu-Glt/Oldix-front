@@ -3,21 +3,27 @@
   font-family: "Cairo";
 }
 
+
 @media all {
-header {
+  header {
     display: flex;
     margin: 1.5rem 1.5rem 40px 1.5rem;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.header__left {
+.error__message {
+  color: rgb(253, 52, 52);
+  margin-left: 1em;
+}
+
+.error__label {
+  color: rgba(253, 52, 52);
+}
+
+.header__left, .hide-nav {
   display: flex;
   justify-content: flex-start;
-  min-width: 500px;
-  max-width: 900px;
-  width: 65%;
-  padding-left: 2.25%;
 }
 
 .header__right {
@@ -31,6 +37,11 @@ header {
   max-height: 73px;
 }
 
+.button__container {
+  display:flex;
+  justify-content: space-between;
+}
+
 .menu {
   display: flex;
   font-size: 1rem;
@@ -40,7 +51,10 @@ header {
   flex-wrap: wrap;
   font-family: 'Cinzel', serif;
   font-weight: 500;
-
+  &__burger {
+    width: 0px;
+    height: 0px;
+  }
   &__item {
     margin-left : 1em;
 
@@ -67,11 +81,11 @@ header {
   // border: 2px solid white;
   //margin-right: 2em;
 }
-}
+
 
 .container__close {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   background: #fff;
   display: flex;
   border: solid 3px #f6ff00;
@@ -87,14 +101,14 @@ header {
 
 .search-bar {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   align-items: center;
 }
 
 .container__open {
-  width: 250px;
-  height: 40px;
+  width: 300px;
+  height: 35px;
   background: #fff;
   display: flex;
   border: solid 3px #f6ff00;
@@ -109,12 +123,13 @@ header {
 }
 .search-bar__search-icon {
   display: flex;
-  justify-content: space-between;
+  margin-left:5px;
+  justify-content: center;
   align-items: center;
 }
 
 .loop__icon {
-
+  margin-left: 1em;
   width: 20px;
   height: 20px;
 }
@@ -138,6 +153,18 @@ header {
   padding:0;
   margin-left:0.5rem;
   font-size: 1rem;
+  width: 100%;
+}
+
+.button__search {
+  color: rgb(60, 168, 60);
+  font-size: 2em;
+}
+
+.button__search__none {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
 }
 
 .test__connexion {
@@ -155,16 +182,18 @@ header {
 	font-size:0.8em;
 	padding:8px 15px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #2f6627;
+	text-shadow:0px 1px 0px #000000;
   margin-right: 1em;
-}
-.login__button:hover {
-	background-color:#3a3a3a;
-  color: white;
-}
-.login__button:active {
-	position:relative;
-	top:1px;
+
+  &__close {
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
+  }
+  &:hover {
+    background-color:#3a3a3a;
+    color: white;
+  }
 }
 
 .profil__disconnect {
@@ -173,112 +202,8 @@ header {
   height: 0px;
   margin-right: 2em;
 }
-
-/* Style barre de recherche 
-.container .search-bar{
-  width: 60px;
-  height: 60px;
-  background: #fff;
-  display: flex;
-  border: solid 3px #f6ff00;
-  border-radius: 30px;
-  overflow: hidden;
-  transition: 0.5s;
-  box-shadow: 5px 5px 15px #292929;
-  outline: none;
 }
-
-.search-bar__search-input {
-  background-color: white;
-}
-.container .search-bar__search-icon {
-  padding-left: 10px;
-  padding-right: 13px;
-  }
-.container .search-bar__search-icon .fas {
-  padding: 0.55rem;
-  border-radius: 50%;
-  color: #292929;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.4rem;
-  transition: 0.5s;
-  }
-.container .search-bar__search-icon:hover {
-  cursor: pointer;
-  }
-.container .search-bar__search-input {
-  height: 30px;
-  width: 370px;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container .search-bar__search-input input {
-  width: 100%;
-  height: 100%;
-  outline: none;
-  font-size: 1.2em;
-  padding: 0 0 0 0;
-  border: none;
-  color: #ffffff;
-  font-family: "Cairo", "sans-serif";
-}
-.container .search-bar__search-input input::-moz-placeholder {
-  font-size: 0.7em;
-  color: #8d8d8d;
-  font-weight: 400;
-  font-family: "Cairo", "sans-serif";
-}
-.container .search-bar__search-input input:-ms-input-placeholder {
-  font-size: 0.7em;
-  color: #8d8d8d;
-  font-weight: 400;
-  font-family: "Cairo", "sans-serif";
-}
-.container .search-bar__search-input input::placeholder {
-  font-size: 0.7em;
-  color: #8d8d8d;
-  font-weight: 400;
-  font-family: "Cairo", "sans-serif";
-}
-// @media screen and (max-width: 576px) {
-//   .container .search-bar__search-input {
-//     width: 230px;
-//   }
-// }
-.container .search-bar__close-icon .far {
-  width: 150px;
-  margin-right: 17px;
-  background: transparent;
-  font-size: 1.5em;
-  color: #292929;
-}
-.container .search-bar__close-icon .far:hover {
- cursor: pointer;
- }
-// @media screen and (max-width: 576px) {
-//   .container .search-bar {
-//     width: 300px;
-//   }
-// }
-.container .search-bar--active {
-   width: 440px;
- }
-.container .search-bar--active i.fas {
- color: #fff;
-  background: #292929;
- }
-// @media screen and (max-width: 576px) {
-//   .container .search-bar--active {
-//     width: 300px;
-//   }
-// }
-}*/
-// ******************************* EN DESSOUS DE 15700 PX ******************************* //
+// ******************************* EN DESSOUS DE 1570 PX ******************************* //
 @media screen and (max-width: 1570px) {
   header {
     display: flex;
@@ -290,7 +215,7 @@ header {
   display: flex;
   justify-content: flex-start;
   min-width: 500px;
-  width: 70%;
+  //width: 70%;
   padding-left: 2.25%;
 }
 
@@ -299,7 +224,7 @@ header {
   justify-content: flex-end;
   align-items: center;
   min-width: 250px;
-  width: 30%;
+  //width: 30%;
 }
 
 .logo {
@@ -445,16 +370,27 @@ header {
 
   header {
     margin: 2rem 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.languages__submenu {
+  margin-top: 2em;
 }
 
 .header__left {
-width: 1000px;
+}
+
+.button__container {
+  width:100%;
 }
 
 .header__right {
   align-items: center;
   display: flex;
-  position: absolute;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 3rem;
   right: 2rem;
 }
 
@@ -492,6 +428,11 @@ width: 1000px;
     }
   } 
 }
+
+.login__button {
+  width: 100%;
+  margin-top: 1em;
+}
 .profil {
   width: 45px;
   height: 45px;
@@ -518,6 +459,15 @@ width: 1000px;
   display: none;
   margin-left: 0;
 }
+
+.button__container {
+  width: 40%;
+  margin-left: 5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .container .search-bar__search-icon {
   padding-left: 10px;
   padding-right: 13px;
@@ -544,6 +494,11 @@ width: 1000px;
   justify-content: center;
   align-items: center;
 }
+
+.container__open{
+  width: 50%;
+}
+
 .container .search-bar__search-input input {
   width: 100%;
   height: 100%;

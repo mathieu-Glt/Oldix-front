@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const MoviesList = ({ movies, loading, setDescriptionMovie, openModal, setOpenModal, setLoading, closeModal }) => {
+const SearchResults = ({ movies, loading, setDescriptionMovie, openModal, setOpenModal, setLoading, closeModal }) => {
 
   const showModal = movieSlug => {
     setOpenModal(true);
@@ -33,4 +33,4 @@ const MoviesList = ({ movies, loading, setDescriptionMovie, openModal, setOpenMo
   )
 };
 
-export default MoviesList;
+export default SearchResults;

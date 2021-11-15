@@ -10,16 +10,64 @@
   top: 0;
   height: 100vh;
   overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 999999999;
   position: fixed;
   display: flex;
-     
+  
+  &__background {
+      background-color: rgba(0, 0, 0, 0.7);
+      height: 100vh;
+      left: 0;
+      top:0;
+      overflow: auto;
+      position: fixed;
+      z-index: 2;
+      width: 100vw;
+    }
+
+    &__content {
+      z-index:5
+    }
 
     &:target {
     display: table;
     position: absolute;
+    }
+
+.closebtn {
+  z-index: 5;
+}
+
+    .add__button {
+      position: relative;
+      color: red;
+      font-size: 3em;
+      font-weight: 900;
+      padding: 0;
+      margin: 0;
+      text-shadow: 
+      0 1px 0 rgb(255, 255, 255), 
+      0 2px 0 #ffffff,
+      0 3px 0 #ffffff,
+      0 4px 0 #ffffff,
+      0 5px 0 #ffffff,
+      0 6px 1px rgba(var(--couleur),.1),
+      0 0 5px rgba(var(--couleur),.1),
+      0 1px 3px rgba(var(--couleur),.3),
+      0 3px 5px rgba(var(--couleur),.3),
+      0 5px 10px rgba(var(--couleur),.25),
+      0 10px 10px rgba(var(--couleur),.2),
+      0 20px 20px rgba(var(--couleur),.15);
+      font-size: calc(100vw / 10)
+
+      &__close {
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+      }
+
+      &:hover{
+        color: rgb(255, 77, 77);
+      }
     }
 
 /* Le contenu de la modale */    
