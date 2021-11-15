@@ -5,7 +5,7 @@ import axios from 'axios';
 import MoviesList from 'src/components/MoviesList';
 // import './categories.scss';
 
-const SubThematics = ({ resultsThematics, loading, setDescriptionMovie, openModal, setOpenModal, setLoading, closeModal }) => {
+const SubThematics = ({ resultsThematics, loading, setDescriptionMovie, openModal, setOpenModal, setLoading, closeModal, }) => {
 
   // On défini le state initial
   const [movies, setMovies] = useState([]);
@@ -16,7 +16,7 @@ const SubThematics = ({ resultsThematics, loading, setDescriptionMovie, openModa
 
   // Requete ajax pour récupérer les films correspondants à telle catégorie
   const getMovies = () => {
-    axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/thematics/${slug}`)
+    axios.get(`http://ec2-54-205-49-193.compute-1.amazonaws.com/api/thematics/${slug}`)
     .then((response) => {
       setMovies(response.data);
       setIsLoading(false);

@@ -10,7 +10,7 @@ const ContactUs = () => {
   const [message, setMessage] = useState("");
 
   const sentMessage = () => {
-    axios.post("http://ec2-54-165-199-42.compute-1.amazonaws.com/api/mail",{
+    axios.post("http://ec2-54-205-49-193.compute-1.amazonaws.com/api/mail",{
       username: username,
       email: email,
       object: object,

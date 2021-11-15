@@ -5,18 +5,18 @@ import axios from 'axios';
 import MoviesList from 'src/components/MoviesList';
 // import './categories.scss';
 
-const SubByLanguages = ({ resultsLanguages, loading, setDescriptionMovie, openModal, setOpenModal, setLoading, closeModal }) => {
+const SubByLanguages = ({ resultsLanguages, loading, setDescriptionMovie, openModal, setOpenModal, setLoading, closeModal, isLoading, setMovies, setIsLoading, movies }) => {
 
   // On défini le state initial
-  const [movies, setMovies] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [movies, setMovies] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
 
   // On récupère le slug dans l'url
   const {slug} = useParams();
 
   // Requete ajax pour récupérer les films correspondants à telle catégorie
   const getMovies = () => {
-    axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/languages/${slug}`)
+    axios.get(`http://ec2-54-205-49-193.compute-1.amazonaws.com/api/languages/${slug}`)
     .then((response) => {
       // console.log('repositories :', response.data.items);
       // console.log(`nb : {response.data.total_count}`);

@@ -4,31 +4,39 @@ import React from 'react';
 import './modal.scss';
 
 
-const Modal = ({ showModal, children, closeModal, loading, descriptionMovie }) => {
-
-  const [favorite, setFavorite] = useState(false);
-
+const Modal = ({ isFavorite, showModal, children, closeModal, loading, descriptionMovie }) => {
+  
   
   const addFavoriteMovies = () => {
-    axios.post(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/list/add`, {
+    axios.post("http://ec2-54-205-49-193.compute-1.amazonaws.com/api/list/add", {
+      movie: descriptionMovie[0].slug
+    },
+    {
       headers: {
-        Authorization: 'Bearer ' + sessionStorage.getItem("userDetails")
-        },
-      body: {
-        movie: 'Bearer' + descriptionMovie[0].slug,
-      }
-    })
+        Authorization: 'Bearer ' + localStorage.getItem("userDetails")
+      },
+      })
       .then((response) => {
         console.log("has been added to favorites")
-        setFavorite(!favorite)
           })
       .catch((error) => {
-            console.log(error);
+        console.log(error);
           })
-      .finally(() => {
+          .finally(() => {
           })
   }
-
+  
+  const deleteFavorite = movieSlug => {
+    axios.delete(`http://ec2-54-205-49-193.compute-1.amazonaws.com/api/list/delete/${movieSlug}`, {
+     headers: {
+       Authorization: 'Bearer ' + localStorage.getItem("userDetails")
+       }
+   })
+   .then((response) => {
+    window.location.reload(true);
+   }
+   )
+ }
   const resultInModal = !loading ? (
     <React.Fragment>
       <button type="button" className="closebtn" onClick={closeModal}>
@@ -36,12 +44,12 @@ const Modal = ({ showModal, children, closeModal, loading, descriptionMovie }) =
       </button>
       <div className="modal__content">
         <div className="modal__content__left"> 
-      <button className={!favorite ? "add__button" : "add__button__close"}
+      <button className={!isFavorite ? "add__button" : "add__button__close"}
         type="button" onClick={addFavoriteMovies}>
           &#x2661;
       </button>
-      <button className={favorite ? "add__button" : "add__button__close"}
-        type="button">
+      <button className={isFavorite ? "add__button" : "add__button__close"}
+        type="button" onClick={ () => deleteFavorite(descriptionMovie[0].slug)} >
           &#x2665;
       </button>
           <h3>{descriptionMovie[0].name}</h3>

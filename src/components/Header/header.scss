@@ -12,6 +12,15 @@
     justify-content: space-between;
 }
 
+.error__message {
+  color: rgb(253, 52, 52);
+  margin-left: 1em;
+}
+
+.error__label {
+  color: rgba(253, 52, 52);
+}
+
 .header__left, .hide-nav {
   display: flex;
   justify-content: flex-start;
@@ -75,8 +84,8 @@
 
 
 .container__close {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   background: #fff;
   display: flex;
   border: solid 3px #f6ff00;
@@ -98,8 +107,8 @@
 }
 
 .container__open {
-  width: 20vw;
-  height: 30px;
+  width: 300px;
+  height: 35px;
   background: #fff;
   display: flex;
   border: solid 3px #f6ff00;
@@ -144,6 +153,18 @@
   padding:0;
   margin-left:0.5rem;
   font-size: 1rem;
+  width: 100%;
+}
+
+.button__search {
+  color: rgb(60, 168, 60);
+  font-size: 2em;
+}
+
+.button__search__none {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
 }
 
 .test__connexion {

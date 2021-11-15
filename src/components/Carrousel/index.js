@@ -9,33 +9,15 @@ import React from 'react';
 
 import 'swiper/css/pagination';
 
-const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, setLoading, isAuth }) => {
+const Carroussel = ({ favoriteModal, categories, openModal, setOpenModal, setDescriptionMovie, setLoading, isAuth, isFavorite }) => {
 
-  // *******************  AFFICHAGE DE LA MODALE ******************* //
-  const showModal = movieSlug => {
-    setOpenModal(true);
-    setLoading(true);
-
-    axios
-    .get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/movies/${movieSlug}`)
-    .then(response =>{
-      setDescriptionMovie([response.data]);
-      setLoading(false);
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-    .finally(() => {
-
-    });
-  }
 
   // *******************  AFFICHAGE DES FILMS ******************* //
   const [resultsMoviesByCategory, setResultsMoviesByCategory] = useState([]);
 
   const getMoviesByCategory = () => {
     
-    axios.get(`http://ec2-54-165-199-42.compute-1.amazonaws.com/api/categories/${categories}`)
+    axios.get(`http://ec2-54-205-49-193.compute-1.amazonaws.com/api/categories/${categories}`)
     .then((response) => {
       setResultsMoviesByCategory(response.data);
     })
@@ -67,7 +49,7 @@ const Carroussel = ({ categories, openModal, setOpenModal, setDescriptionMovie, 
       className="swiperSlide"
       key={movie.slug + index}
       > 
-        <img className="carouselbox__img" src={movie.pictureUrl} alt= {movie.name} onClick={ () =>  showModal(movie.slug) }></img>
+        <img className="carouselbox__img" src={movie.pictureUrl} alt= {movie.name} onClick={ () =>  favoriteModal(movie.slug) }></img>
     </SwiperSlide>
     )}
     </Swiper>

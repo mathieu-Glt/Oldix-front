@@ -1,7 +1,6 @@
 import React from "react";
 import './loginForm.scss';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 
 const LoginForm = ({ setOpenLoginForm, closeLoginForm, register, isAuth, setIsAuth, login, email, setEmail, password, setPassword, usernameReg, setUsernameReg,emailReg, setEmailReg, passwordReg, setPasswordReg, confirmPasswordReg, setConfirmPasswordReg }) => {
   // ********************** Variable d'états ********************** 
@@ -45,7 +44,7 @@ const LoginForm = ({ setOpenLoginForm, closeLoginForm, register, isAuth, setIsAu
               }} 
               required 
               />
-            <label>Email</label> 
+            <label><span id="email">Email</span></label>
           </div>
         </div>
         <div className="col-xs-12">
@@ -58,9 +57,14 @@ const LoginForm = ({ setOpenLoginForm, closeLoginForm, register, isAuth, setIsAu
               }} 
               required 
               />
-            <label>Password</label> 
+            <label><span id="passwordLogin">Password</span></label>
           </div>
         </div>
+        <div className="col-xs-12">
+          <div className="styled-input wide">
+            <div className="form-message-login"></div>
+            </div>
+          </div>
         <div className="col-xs-12">
           <div className="btn-lrg submit-btn" onClick={login}>Log in</div>
         </div>
@@ -78,7 +82,6 @@ const LoginForm = ({ setOpenLoginForm, closeLoginForm, register, isAuth, setIsAu
         type="text" 
         onChange={(e) => {
           setUsernameReg(e.target.value);
-          console.log(`Le Username est : ${e.target.value}`);
         }} 
         required
        />
@@ -91,7 +94,6 @@ const LoginForm = ({ setOpenLoginForm, closeLoginForm, register, isAuth, setIsAu
         type="text"
         onChange={(e) => {
         setEmailReg(e.target.value);
-        console.log(`L'email est : ${e.target.value}`);
         }}  
         required 
        />
@@ -104,11 +106,10 @@ const LoginForm = ({ setOpenLoginForm, closeLoginForm, register, isAuth, setIsAu
         type="password"
         onChange={(e) => {
         setPasswordReg(e.target.value);
-        console.log(`Le mdp est : ${e.target.value}`);
         }} 
         required 
        />
-       <label>Password</label>
+       <label><span id="password">Password</span></label>
      </div>
    </div>
    <div className="col-xs-12">
@@ -121,9 +122,14 @@ const LoginForm = ({ setOpenLoginForm, closeLoginForm, register, isAuth, setIsAu
         }}  
         required
        />
-       <label>Confirm password</label>
+       <label><span id="confirmPassword">Confirm password </span></label>
      </div>
    </div>
+   <div className="col-xs-12">
+     <div className="styled-input wide">
+      <div className="form-message-register"></div>
+      </div>
+    </div>
    <div className="col-xs-12">
      <div className="btn-lrg submit-btn" onClick={register}>Register</div>
    </div>
